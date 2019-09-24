@@ -80,28 +80,64 @@ hgetall key //拿取值by hash
 ### .csproj
 ```config
 <Project Sdk="Microsoft.NET.Sdk.Web">
+
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>    
-        <!--Spa路徑-->   
-		<SpaRoot>ClientApp\</SpaRoot>
+        <TargetFramework>netcoreapp3.0</TargetFramework>       
+		<SpaRoot>ClientApp\</SpaRoot>       
+		<LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="AutoMapper" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="3.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.5.0" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
+        <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.5" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0-preview9" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
     </ItemGroup>
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <Content Update="nlog.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
+  
   <ItemGroup>    
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
-  <!--環境是否有安裝node.js-->   
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Vue.Core.Common\Vue.Core.Common.csproj" />
+    <ProjectReference Include="..\Vue.Core.Dal\Vue.Core.Dal.csproj" />
+    <ProjectReference Include="..\Vue.Core.Data\Vue.Core.Data.csproj" />
+    <ProjectReference Include="..\Vue.Core.Model\Vue.Core.Model.csproj" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Authentication.JwtBearer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authentication.jwtbearer\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SpaServices, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.spaservices\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.SpaServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.identitymodel.tokens\5.3.0\lib\netstandard2.0\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.3.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 	<Target Name="EnsureNode">
 	  <Exec Command="node --version" ContinueOnError="true">
 		<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
@@ -109,7 +145,7 @@ hgetall key //拿取值by hash
 	  <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
 	</Target>
  
- <!--發怖前要先做npm run build--> 
+ 
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <ItemGroup>
