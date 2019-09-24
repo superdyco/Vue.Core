@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Win32.SafeHandles;
-using Newtonsoft.Json;
+
 
 namespace Vue.Core.Data.Entities
 {
