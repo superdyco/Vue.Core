@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-p12345}
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - docker-network
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-postgres@admin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-p12345}
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - docker-network
+    restart: unless-stopped
+    
+  Redis:
+    container_name: redis_container
+    image: redis:latest
+    ports:
+      - "6379:6379"    
+    volumes:
+      - redis:/var/lib/redis
+    networks:
+          - docker-network
+    restart: unless-stopped
+    
+networks:
+  docker-network:
+    driver: bridge
+
+volumes:
+  redis:
+  pgdata:
+  pgadmin:
