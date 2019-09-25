@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Vue.Core.Common;
@@ -59,8 +60,7 @@ namespace Vue.Core.Service
                 return null;
 
             var user = _db.Users.SingleOrDefault(x => x.LoginName == loginname);
-
-            // check if username exists
+            
             if (user == null)
                 return null;
 

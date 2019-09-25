@@ -12,6 +12,7 @@
         <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="3.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0" />
         <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
         <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.5.0" />
         <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
@@ -32,6 +33,7 @@
 
   
   <ItemGroup>    
+    <Folder Include="wwwroot" />    
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -41,6 +43,14 @@
     <ProjectReference Include="..\Vue.Core.Dal\Vue.Core.Dal.csproj" />
     <ProjectReference Include="..\Vue.Core.Data\Vue.Core.Data.csproj" />
     <ProjectReference Include="..\Vue.Core.Model\Vue.Core.Model.csproj" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\app.aa3099a2.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-771ff699.859911ce.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-e474f648.96e22f75.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-vendors.97e519a2.css" />
   </ItemGroup>
 
 	<Target Name="EnsureNode">

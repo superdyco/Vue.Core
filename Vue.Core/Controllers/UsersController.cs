@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
@@ -30,11 +31,14 @@ namespace Vue.Core.Controllers
     public class UsersController : BaseController
     {
         private IUsersService<Users> _userService;
-        public UsersController(IDistributedCache distributedCache,ApplicationDbContext db,IUsersService<Users> userService,
+        private IUsersTokenService _usersTokenService;
+        public UsersController(IDistributedCache distributedCache,ApplicationDbContext db,
+            IUsersService<Users> userService,IUsersTokenService usersTokenService,
             IMapper mapper,IOptions<JwtSetting> jwtsetting) 
             :base(distributedCache,db,mapper,jwtsetting)
         {
             _userService = userService;
+            _usersTokenService = usersTokenService;
         }
 
         [AllowAnonymous]
@@ -47,12 +51,37 @@ namespace Vue.Core.Controllers
             if (user == null)
                 return Unauthorized();
             
-            var tokenString = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.Expire);
-            var refreshTokenString = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.LongExpire);
+            var getToken = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.Expire);
+            var getRefreshToken = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.LongExpire);
+            var result=_usersTokenService.SaveToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
+            getToken.expireTo, getRefreshToken.expireTo);
+            if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
             
             return await Task.FromResult(Ok(new {
-                access_token = tokenString,
-                refresh_token = refreshTokenString
+                access_token = getToken.tokenString,
+                refresh_token = getRefreshToken.tokenString
+            }));
+        }
+        
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenModel data)
+        {
+            var usersid = _usersTokenService.CheckRefreshToken(data.access_token,data.access_refreshtoken);
+            if (usersid==0)
+                return Unauthorized();
+            var user = _userService.GetById(usersid.Value);
+            //如果存在,重新產生出jwtToken
+            var getToken = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.Expire);
+            var getRefreshToken = TokenMan.GenToken(user,_jwtsetting,_jwtsetting.LongExpire);
+            var result=_usersTokenService.UpdateToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
+                getToken.expireTo, getRefreshToken.expireTo);
+            if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
+            
+            return await Task.FromResult(Ok(new {
+                access_token = getToken.tokenString,
+                refresh_token = getRefreshToken.tokenString
             }));
         }
 

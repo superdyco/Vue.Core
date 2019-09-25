@@ -13,13 +13,16 @@
 1. 完整的前後端分離,ClientApp 也可以做到獨立執行
 2. 程式執行後,前端可以做到webpack的HMR功能(Hot Reload)
 3. 使用Jwt做驗證機制,有refresh token機制,會自動交換token
+    > short token : 2 hours, long token : 7 days
 4. 可以運作在docker環境
 5. 
 
 # .net core
-1. 安裝 postgres 
-```config
+1. 安裝 postgres /dotnet ef tools
+```
 dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+//EF CORE3.0
+dotnet tool install --global dotnet-ef
 ```
 2. migrations database
   - add migrations

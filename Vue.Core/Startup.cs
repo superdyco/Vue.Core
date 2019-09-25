@@ -66,12 +66,19 @@ namespace Vue.Core
                 options.RequireHttpsMetadata = false;
                 options.Events = new JwtBearerEvents()
                 {
+                    OnAuthenticationFailed = context =>
+                    {
+                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                        {
+                            context.Response.Headers.Add("Token-Expired", "true");
+                        }
+                        return Task.CompletedTask;
+                    },
                     OnTokenValidated = context =>
                     {
                         //get jwt claims data
                         //var claimIdentity = (ClaimsIdentity)context.Principal.Identity;
-                        
-                            
+                      
                         return Task.CompletedTask;
                     }
                 };
@@ -112,6 +119,7 @@ namespace Vue.Core
             
             //DI
             services.AddScoped<IUsersService<Users>, UsersService>();
+            services.AddScoped<IUsersTokenService, UsersTokenService>();
             #region options
                 services.Configure<JwtSetting>(o => Configuration.GetSection("JwtSetting").Bind(o));
             #endregion
@@ -124,7 +132,7 @@ namespace Vue.Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+                
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,

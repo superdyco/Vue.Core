@@ -19,7 +19,10 @@ namespace Vue.Core.Data.Entities
         public string RefreshToken { get; set; }
         public DateTime? RefreshExpiresTo { get; set; }
         
+        public int RefreshTimes { get; set; }
+        
         public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         
         [ForeignKey("UsersId")] public virtual Users Users { get; set; }
          

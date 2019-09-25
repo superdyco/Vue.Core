@@ -3,6 +3,7 @@ import axios from 'axios';
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import * as _config from '@/_helps/_config.js'
+import CONSTANTS from "@/api/constants"
 import qs from 'qs'
 
 //base setting
@@ -30,12 +31,34 @@ baseRequest.interceptors.response.use(data => {
     }
     return data;
 }, err => {    
-    NProgress.done();     
+    NProgress.done();    
     if (err.code === "ECONNABORTED") {
         Vue.toasted.error('作業逾時', {icon: 'error'});
-    } else if (err.response && err.response.status === 502 || err.response.status === 504 || err.response.status === 404) {
+    } else if (err.response && (err.response.status === 502 || err.response.status === 504 || err.response.status === 404)) {
         Vue.toasted.error('找不到伺服器', {icon: 'error'});
-    } else if (err.response && err.response.status === 403 || err.response.status === 401) {        
+    } else if (err.response && err.response.headers["token-expired"]) {       
+        //var tempConfig=err.response.config;        
+        let getuser = JSON.parse(localStorage.getItem("user"));
+        var access_token=getuser.access_token;
+        var access_refreshtoken=getuser.refresh_token;        
+        axios({
+            method: 'post',
+            url: CONSTANTS.ENDPOINT.USERS.REFRESHTOKEN,
+            data:{access_token:access_token,access_refreshtoken:access_refreshtoken}
+        }).then(function (resp) {
+                if (resp && [200, 201].includes(resp.status))
+                {
+                    let data = resp.data;                    
+                    localStorage.setItem('user', JSON.stringify(data))
+                }
+            })
+            .catch(function (error) {
+                //如果還是拿不到token,則登出
+                localStorage.clear();
+                location.href='/';
+            });
+        
+    } else if (err.response && (err.response.status === 403 || err.response.status === 401)) {        
         location.href='/pages/'+ err.response.status;
     } else if (!err.status) {
         Vue.toasted.error('network error', {icon: 'error'});

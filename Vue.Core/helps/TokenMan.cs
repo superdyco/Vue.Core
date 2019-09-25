@@ -11,11 +11,12 @@ namespace Vue.Core.helps
 {
     public static class TokenMan
     {
-        internal static string GenToken(Users user, JwtSetting setting,int expire)
+        internal static (string tokenString,DateTime expireTo) GenToken(Users user, JwtSetting setting,int expire)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var keybyte = Encoding.ASCII.GetBytes(setting.Key);
-
+            var expireTo = DateTime.UtcNow.AddMinutes(expire);
+            
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Issuer = setting.Issuer,
@@ -34,12 +35,12 @@ namespace Vue.Core.helps
                     new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(expire),
+                Expires = expireTo,
                 SigningCredentials =
                     new SigningCredentials(new SymmetricSecurityKey(keybyte), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);;
+            return (tokenHandler.WriteToken(token),expireTo);
         }
     }
 }
