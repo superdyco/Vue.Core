@@ -38,7 +38,7 @@ namespace Vue.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+        
             //db
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
@@ -53,7 +53,7 @@ namespace Vue.Core
                 options.Configuration = Configuration["redis:Connection"];
                 options.InstanceName = Configuration["redis:InstanceName"];
             });
-
+            services.AddSession();
             //jwt
             services.AddAuthentication(x =>
                 {
@@ -71,6 +71,7 @@ namespace Vue.Core
                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
                         {
                             context.Response.Headers.Add("Token-Expired", "true");
+                            context.Response.StatusCode = 401;
                         }
                         return Task.CompletedTask;
                     },
@@ -123,6 +124,8 @@ namespace Vue.Core
             #region options
                 services.Configure<JwtSetting>(o => Configuration.GetSection("JwtSetting").Bind(o));
             #endregion
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -153,6 +156,7 @@ namespace Vue.Core
             app.UseApiHitsMiddleware(app.ApplicationServices);
             
             app.UseDefaultFiles();
+            app.UseSession();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseCors();

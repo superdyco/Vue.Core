@@ -15,11 +15,10 @@
     export default {
         name: 'userslist',
         created(){            
-            this.$http.apiGet({url: CONSTANTS.ENDPOINT.USERS.GETALL,config:{headers:authHeader()}}).then(resp => {
-                if (resp && [200,201].includes(resp.status)) {
-                    let data = resp.data;
-                    console.log(resp)
-                }
+            this.$http.UsersServer.fetch(CONSTANTS.ENDPOINT.USERS.GETALL).then(data => {                   
+                    console.log(data);
+            }).catch((error) => {                
+                console.log(error);
             });            
         },
         data () {

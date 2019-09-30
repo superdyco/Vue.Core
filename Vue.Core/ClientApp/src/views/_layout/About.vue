@@ -10,12 +10,12 @@
     name: 'about',    
     methods:{
       test(){
-       this.$http.apiGet({url:CONSTANTS.ENDPOINT.USERS.QUOTE,config:{headers:authHeader()}}).then(resp=> {        
-          if (resp && resp.status === 200) {
-            let data = resp.data;
-            console.log(data);
-          }
-        });
+       // this.$http.apiGet({url:CONSTANTS.ENDPOINT.USERS.QUOTE}).then(resp=> {        
+       //    if (resp && resp.status === 200) {
+       //      let data = resp.data;
+       //      console.log(data);
+       //    }
+       //  });
       }
     }
   }

@@ -69,27 +69,23 @@
             login(){
                 this.submitted = true;
                 if (this.$refs.form.validate()) {
-                    this.$http.apiPost({url: CONSTANTS.ENDPOINT.USERS.LOGIN,data:{Loginname:this.Loginname,Password:this.Password}}).then(resp => {            
-                        if (resp && [200,201].includes(resp.status)) {
-                            let data = resp.data;                           
-                            //save to localstorage                            
-                            localStorage.setItem('user',JSON.stringify(data))
-                            this.$router.push({ path: '/' })
-                        }
+                    this.$http.UsersServer.post(CONSTANTS.ENDPOINT.USERS.LOGIN,{Loginname:this.Loginname,Password:this.Password},false).then(data => {                                           
+                            localStorage.setItem('user',JSON.stringify(data));
+                            this.$router.push({ path: '/' });                        
                     });
                 }
             },
             create(){
                 this.submitted = true;                
-                if (this.$refs.form.validate()) {
-                    this.$http.apiPost({url: CONSTANTS.ENDPOINT.USERS.SIGNUP,data:{Loginname:this.Loginname,Password:this.Password}}).then(resp => {                     
-                        if (resp && [200,201].includes(resp.status)) {                            
-                            let data = resp.data;
-                            //save to localstorage                            
-                            localStorage.setItem('user',JSON.stringify(data))                            
-                        }
-                    });
-                }
+                // if (this.$refs.form.validate()) {
+                //     this.$http.apiPost({url: CONSTANTS.ENDPOINT.USERS.SIGNUP,data:{Loginname:this.Loginname,Password:this.Password}}).then(resp => {                     
+                //         if (resp && [200,201].includes(resp.status)) {                            
+                //             let data = resp.data;
+                //             //save to localstorage                            
+                //             localStorage.setItem('user',JSON.stringify(data))                            
+                //         }
+                //     });
+                // }
             }
         }
     }
