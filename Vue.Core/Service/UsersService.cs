@@ -4,6 +4,7 @@ using System.Linq;
 using Vue.Core.Common;
 using Vue.Core.Data;
 using Vue.Core.Data.Entities;
+using Vue.Core.Model;
 using Vue.Core.Service.Interface;
 
 namespace Vue.Core.Service
@@ -13,9 +14,10 @@ namespace Vue.Core.Service
         private ApplicationDbContext _db;
         public UsersService(ApplicationDbContext db) => _db = db;
 
-        public IEnumerable<Users> GetAll()
+        public PagingModel<Users> GetAll(Fitlers.UsersFilter filter)
         {
-            return _db.Users;
+            var query = filter.Query(_db.Users);
+            return query;
         }
 
         public Users GetById(int id)

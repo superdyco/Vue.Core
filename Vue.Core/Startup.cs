@@ -124,6 +124,10 @@ namespace Vue.Core
             #region options
                 services.Configure<JwtSetting>(o => Configuration.GetSection("JwtSetting").Bind(o));
             #endregion
+
+            //關閉回傳Json格式時Camel case names by default (第一字母變小寫)
+            services.AddControllers()
+                .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
@@ -159,7 +163,7 @@ namespace Vue.Core
             app.UseSession();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseCors();
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
             
             app.UseAuthentication();

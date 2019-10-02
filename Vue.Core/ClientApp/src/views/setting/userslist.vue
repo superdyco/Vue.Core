@@ -1,123 +1,93 @@
 <template>
     <div class="userslist">
-        <v-data-table
-                :headers="headers"
-                :items="desserts"
-                :items-per-page="5"
-                class="elevation-1"
-        ></v-data-table>
+        <v-card>
+            <v-card-title>
+                Search
+                <div class="flex-grow-1"></div>
+                <v-text-field
+                        v-model="keyword"
+                        append-icon="search"
+                        label="Search"
+                        single-line
+                        hide-details
+                ></v-text-field>
+            </v-card-title>
+            <v-data-table
+                    :headers="headers"
+                    :items="records"
+                    dense
+                    loading-text="Loading... Please wait"
+                    :loading="loading"
+
+                    :options.sync="options"
+                    :server-items-length="recordcount"
+
+                    :footer-props="{
+                      showFirstLastPage: true,
+                      firstIcon: 'mdi-arrow-collapse-left',
+                      lastIcon: 'mdi-arrow-collapse-right',
+                      prevIcon: 'mdi-minus',
+                      nextIcon: 'mdi-plus'
+                    }"
+                    class="elevation-1"
+            ></v-data-table>
+        </v-card>
     </div>
 </template>
 
 <script>
     import CONSTANTS from "@/api/constants";
     import {authHeader} from "@/_helps/auth-header.js"
+
     export default {
         name: 'userslist',
-        created(){            
-            this.$http.UsersServer.fetch(CONSTANTS.ENDPOINT.USERS.GETALL).then(data => {                   
-                    console.log(data);
-            }).catch((error) => {                
-                console.log(error);
-            });            
+        methods: {
+            getData() {
+                this.loading = true;
+                const {sortBy, sortDesc, page, itemsPerPage} = this.options;
+                let cfg = {
+                    currentPage: page,
+                    pageSize: itemsPerPage,
+                    sortBy: sortBy,
+                    sortDesc: sortDesc,
+                    keyword: this.keyword
+                };
+                this.$http.UsersServer.post(CONSTANTS.ENDPOINT.USERS.GETALL, cfg).then(data => {                    
+                    this.records = data.items;
+                    this.recordcount = data.recordcount;
+                }).catch((error) => {
+                    console.log(error);
+                }).finally(() => this.loading = false);
+            }
         },
-        data () {
+        data() {
             return {
+                keyword: '',
+                recordcount: 0,
+                options: {},
+                loading: false,
                 headers: [
-                    {
-                        text: 'Dessert (100g serving)',
-                        align: 'left',
-                        sortable: false,
-                        value: 'name',
-                    },
-                    { text: 'Calories', value: 'calories' },
-                    { text: 'Fat (g)', value: 'fat' },
-                    { text: 'Carbs (g)', value: 'carbs' },
-                    { text: 'Protein (g)', value: 'protein' },
-                    { text: 'Iron (%)', value: 'iron' },
+                    {text: 'LoginName', value: 'LoginName', align: 'center', sortable: true},
+                    {text: 'FirstName', value: 'FirstName', align: 'center', sortable: true},
+                    {text: 'LastName', value: 'LastName', align: 'center', sortable: true},
+                    {text: 'Gender', value: 'Gender', align: 'center', sortable: true},
+                    {text: 'DateOfBirth', value: 'DateOfBirth', align: 'center', sortable: true},
+                    {text: 'CreatedAt', value: 'CreatedAt', align: 'center', sortable: true},
                 ],
-                desserts: [
-                    {
-                        name: 'Frozen Yogurt',
-                        calories: 159,
-                        fat: 6.0,
-                        carbs: 24,
-                        protein: 4.0,
-                        iron: '1%',
-                    },
-                    {
-                        name: 'Ice cream sandwich',
-                        calories: 237,
-                        fat: 9.0,
-                        carbs: 37,
-                        protein: 4.3,
-                        iron: '1%',
-                    },
-                    {
-                        name: 'Eclair',
-                        calories: 262,
-                        fat: 16.0,
-                        carbs: 23,
-                        protein: 6.0,
-                        iron: '7%',
-                    },
-                    {
-                        name: 'Cupcake',
-                        calories: 305,
-                        fat: 3.7,
-                        carbs: 67,
-                        protein: 4.3,
-                        iron: '8%',
-                    },
-                    {
-                        name: 'Gingerbread',
-                        calories: 356,
-                        fat: 16.0,
-                        carbs: 49,
-                        protein: 3.9,
-                        iron: '16%',
-                    },
-                    {
-                        name: 'Jelly bean',
-                        calories: 375,
-                        fat: 0.0,
-                        carbs: 94,
-                        protein: 0.0,
-                        iron: '0%',
-                    },
-                    {
-                        name: 'Lollipop',
-                        calories: 392,
-                        fat: 0.2,
-                        carbs: 98,
-                        protein: 0,
-                        iron: '2%',
-                    },
-                    {
-                        name: 'Honeycomb',
-                        calories: 408,
-                        fat: 3.2,
-                        carbs: 87,
-                        protein: 6.5,
-                        iron: '45%',
-                    },
-                    {
-                        name: 'Donut',
-                        calories: 452,
-                        fat: 25.0,
-                        carbs: 51,
-                        protein: 4.9,
-                        iron: '22%',
-                    },
-                    {
-                        name: 'KitKat',
-                        calories: 518,
-                        fat: 26.0,
-                        carbs: 65,
-                        protein: 7,
-                        iron: '6%',
-                    },
-                ],
+                records: [],
+            }
+        },
+        watch: {
+            options: {
+                handler() {
+                    this.getData()
+                },
+                deep: true,
+            },
+            keyword: {
+                handler() {
+                    this.getData();
+                }
             }
         }
     }

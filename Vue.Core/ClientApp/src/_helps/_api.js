@@ -20,7 +20,8 @@ baseRequest.interceptors.request.use(config => {
     //加入jwt token
     let user = JSON.parse(localStorage.getItem("user"));
     if (user)
-        config.headers.Authorization = 'Bearer ' + user.access_token;
+        config.headers.Authorization = 'Bearer ' + user.access_token;    
+    
     return config;
 }, err => {
     Toasted.error("請求超時", {icon: 'error'});
@@ -41,6 +42,7 @@ baseRequest.interceptors.response.use(data => {
     } else if (err.response && (err.response.status === 502 || err.response.status === 504 || err.response.status === 404)) {
         Vue.toasted.error('找不到伺服器', {icon: 'error'});
     } else if (err.response && (err.response.status === 401) && err.response.headers["token-expired"]) {
+        console.log("token過期啦")
         return Promise.reject(err);  //401 且為jwt token過期額外處理
     } else if (err.response && (err.response.status === 403)) {
         location.href = '/pages/' + err.response.status;
@@ -52,9 +54,9 @@ baseRequest.interceptors.response.use(data => {
     return Promise.reject(err);
 });
 
-export function TokenCheck(url, paramObj){
+export function TokenCheck(){
     return  new Promise(function (r1, j1) {        
-        baseRequest.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.GETALL).then(resp => {            
+        baseRequest.post(CONSTANTS.ENDPOINT.FAKETOKEN).then(resp => {            
             r1({status: true, config: resp.config});
         }).catch(err => {            
             if (err.response && err.response.headers["token-expired"] && err.response.status === 401)
@@ -71,7 +73,7 @@ export function TokenCheck(url, paramObj){
                 baseRequest.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.REFRESHTOKEN,
                     {access_token: access_token, access_refreshtoken: access_refreshtoken})
                     .then(resp => {
-                        console.log("get new token success");
+                        console.log("拿取新的Token");
                         localStorage.setItem('user', JSON.stringify(resp.data));
                         r2(resp);
                     }).catch(err => {                    
@@ -84,7 +86,7 @@ export function TokenCheck(url, paramObj){
     })
 }
 
-export function fetch(url, params = {}) {
+export function fetch(url, params) {    
     return new Promise((resolve, reject) => {
         baseRequest.get(url, {
             params: params
@@ -98,7 +100,7 @@ export function fetch(url, params = {}) {
     });
 }
 
-export function post(url, data = {}) {
+export function post(url, data) {    
     return new Promise((resolve, reject) => {
         baseRequest.post(url, data).then(
             response => {
@@ -111,7 +113,7 @@ export function post(url, data = {}) {
     });
 }
 
-export function remove(url, data = {}) {
+export function remove(url, data) {
     return new Promise((resolve, reject) => {
         baseRequest.delete(url, data).then(
             response => {
@@ -142,7 +144,7 @@ export function put(url, data = {}) {
 export const UsersServer = {
     fetch: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true) {
-            return TokenCheck(url,paramObj).then(resp => {               
+            return TokenCheck().then(resp => {               
                 return fetch(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);               
             });
         }
@@ -152,7 +154,7 @@ export const UsersServer = {
     },
     post: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
-            return TokenCheck(url,paramObj).then(resp => {
+            return TokenCheck().then(resp => {
                 return post(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
             });
         else
@@ -160,7 +162,7 @@ export const UsersServer = {
     },
     put: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
-            return TokenCheck(url,paramObj).then(resp => {
+            return TokenCheck().then(resp => {
                 return put(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
             });
         else
@@ -168,7 +170,7 @@ export const UsersServer = {
     },
     delete: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
-            return TokenCheck(url,paramObj).then(resp => {
+            return TokenCheck().then(resp => {
                 return remove(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
             });
         else
