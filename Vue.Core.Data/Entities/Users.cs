@@ -32,6 +32,9 @@ namespace Vue.Core.Data.Entities
         
         [NotMapped]
         public string Password { get; set; }
+        [NotMapped]
+        
+        public List<string> RolesSelected { get; set; }
       
     }
 }

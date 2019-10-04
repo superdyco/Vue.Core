@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Vue.Core.Data.Entities
@@ -14,7 +15,7 @@ namespace Vue.Core.Data.Entities
       
         [ForeignKey("Id")] public virtual int? ParentId { get; set; }
         #region ICollection
-        public virtual ICollection<RolesApps> RolesApps { get; set; }
+        [JsonIgnore]public virtual ICollection<RolesApps> RolesApps { get; set; }
         public virtual ICollection<AppsApiCollection> AppsApiCollection { get; set; }
         #endregion
     }

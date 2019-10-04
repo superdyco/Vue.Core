@@ -6,6 +6,7 @@ namespace Vue.Core.Model
 {
     public class UsersList
     {
+        public Guid Gid { get; set; }
         public string LoginName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

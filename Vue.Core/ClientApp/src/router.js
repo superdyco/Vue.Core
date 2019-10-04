@@ -47,6 +47,32 @@ const data = [
                                 }
                             ]
                         }
+                    },
+                    {
+                        name: 'users',
+                        path: 'users/:Gid',
+                        component: () => import('./views/setting/users.vue'), props: true,
+                        meta: {
+                            breadcrumb: [
+                                {
+                                    text: '首頁',
+                                    disabled: false,
+                                    href: "/",
+                                },
+                                {
+                                    text: ' 設定'
+                                },
+                                {
+                                    text: ' 使用者清單',
+                                    disabled: false,
+                                    href: "/setting/userslist",
+                                }
+                                ,
+                                {
+                                    text: ' 使用者維護'
+                                }
+                            ]
+                        }
                     }
                 ]
             },

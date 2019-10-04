@@ -7,5 +7,6 @@ namespace Vue.Core.Service.Interface
     {
         T Authenticate(string loginname, string password);
         PagingModel<T> GetAll(Fitlers.UsersFilter filter);
+        
     }
 }

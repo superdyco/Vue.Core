@@ -9,6 +9,7 @@ namespace Vue.Core.Model
         public MappingProfile() {
             AllowNullCollections = true;
             CreateMap<Users, UsersList>();
+            CreateMap<Roles, RolesJsonModel>();
         }
     }
 }

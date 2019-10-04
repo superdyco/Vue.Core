@@ -1,8 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Vue.Core.Data.Entities;
 
@@ -10,8 +15,10 @@ namespace Vue.Core.Data
 {
     public sealed class ApplicationDbContext : DbContext, IDisposable
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,IHttpContextAccessor httpContextAccessor) : base(options)
         {
+            _httpContextAccessor = httpContextAccessor;
         }
         
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
@@ -48,6 +55,13 @@ namespace Vue.Core.Data
             if (traceable == null) return;            
             // added
             var entityEntries = traceable as EntityEntry[] ?? traceable.ToArray();
+            //操作人
+            
+            string executor = "";
+            var identity = (ClaimsIdentity)_httpContextAccessor.HttpContext.User.Identity;
+            if (identity!=null)
+                executor=identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.Surname)?.Value+" " +
+                         identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.GivenName)?.Value;
             foreach (var item in entityEntries.Where(t => t.State == EntityState.Added))
             {
                 if (item.CurrentValues.Properties.Any(x => x.Name == "Gid"))
@@ -56,6 +70,10 @@ namespace Vue.Core.Data
                     item.Property("CreatedAt").CurrentValue = System.DateTime.Now;
                 if (item.CurrentValues.Properties.Any(x => x.Name == "UpdatedAt"))
                     item.Property("UpdatedAt").CurrentValue = System.DateTime.Now;
+                if (item.CurrentValues.Properties.Any(x => x.Name == "CreatedBy"))
+                    item.Property("CreatedBy").CurrentValue = executor;
+                if (item.CurrentValues.Properties.Any(x => x.Name == "UpdatedBy"))
+                    item.Property("UpdatedBy").CurrentValue = executor;
             }
 
             // modified
@@ -63,6 +81,8 @@ namespace Vue.Core.Data
             {
                 if (item.CurrentValues.Properties.Any(x => x.Name == "UpdatedAt"))
                     item.Property("UpdatedAt").CurrentValue = System.DateTime.Now;
+                if (item.CurrentValues.Properties.Any(x => x.Name == "UpdatedBy"))
+                    item.Property("UpdatedBy").CurrentValue = executor;
             }
         }
 

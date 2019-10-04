@@ -140,41 +140,40 @@ export function put(url, data = {}) {
 }
 
 //封裝
-//users server
-export const UsersServer = {
+export const zServer = {
     fetch: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true) {
             return TokenCheck().then(resp => {               
-                return fetch(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);               
+                return fetch(url, paramObj);               
             });
         }
         else{            
-            return fetch(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+            return fetch(url, paramObj);
         }
     },
     post: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
             return TokenCheck().then(resp => {
-                return post(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+                return post(url, paramObj);
             });
         else
-            return post(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+            return post(url, paramObj);
     },
     put: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
             return TokenCheck().then(resp => {
-                return put(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+                return put(url, paramObj);
             });
         else
-        return put(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+        return put(url, paramObj);
     },
     delete: function (url, paramObj,checkJwt=true) {
         if (checkJwt===true)
             return TokenCheck().then(resp => {
-                return remove(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+                return remove(url, paramObj);
             });
         else
-            return remove(CONSTANTS.ENDPOINT.USERS.BASE + url, paramObj);
+            return remove(url, paramObj);
     }
 };
 

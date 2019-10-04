@@ -1,6 +1,19 @@
 <template>
     <div class="userslist">
+        
         <v-card>
+            <v-card-text style="height: 3px; position: relative">
+            <v-btn @click="add"
+                    absolute
+                    dark
+                    fab
+                    top
+                    right
+                    color="pink"
+            >
+                <v-icon>mdi-plus</v-icon>
+            </v-btn>
+            </v-card-text>
             <v-card-title>
                 Search
                 <div class="flex-grow-1"></div>
@@ -17,11 +30,9 @@
                     :items="records"
                     dense
                     loading-text="Loading... Please wait"
-                    :loading="loading"
-
+                    :loading="loading"             
                     :options.sync="options"
                     :server-items-length="recordcount"
-
                     :footer-props="{
                       showFirstLastPage: true,
                       firstIcon: 'mdi-arrow-collapse-left',
@@ -30,15 +41,25 @@
                       nextIcon: 'mdi-plus'
                     }"
                     class="elevation-1"
-            ></v-data-table>
+            >
+
+                <template v-slot:item.action="{ item }">
+                    <v-icon
+                            small
+                            class="mr-2"
+                            @click="editItem(item)"
+                    >
+                        edit
+                    </v-icon>
+                </template>
+            </v-data-table>
         </v-card>
     </div>
 </template>
 
 <script>
     import CONSTANTS from "@/api/constants";
-    import {authHeader} from "@/_helps/auth-header.js"
-
+   
     export default {
         name: 'userslist',
         methods: {
@@ -52,27 +73,34 @@
                     sortDesc: sortDesc,
                     keyword: this.keyword
                 };
-                this.$http.UsersServer.post(CONSTANTS.ENDPOINT.USERS.GETALL, cfg).then(data => {                    
+                this.$http.zServer.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.GETALL, cfg).then(data => {                    
                     this.records = data.items;
                     this.recordcount = data.recordcount;
                 }).catch((error) => {
                     console.log(error);
                 }).finally(() => this.loading = false);
-            }
+            },
+            add(){
+                this.$router.push({ name: 'users', params: {Gid: null }});
+            },
+            editItem (item) {                
+                this.$router.push({ name: 'users', params: {Gid: item.Gid }});
+            },
         },
         data() {
             return {
                 keyword: '',
                 recordcount: 0,
-                options: {},
+                options: {},               
                 loading: false,
                 headers: [
-                    {text: 'LoginName', value: 'LoginName', align: 'center', sortable: true},
-                    {text: 'FirstName', value: 'FirstName', align: 'center', sortable: true},
-                    {text: 'LastName', value: 'LastName', align: 'center', sortable: true},
-                    {text: 'Gender', value: 'Gender', align: 'center', sortable: true},
-                    {text: 'DateOfBirth', value: 'DateOfBirth', align: 'center', sortable: true},
-                    {text: 'CreatedAt', value: 'CreatedAt', align: 'center', sortable: true},
+                    {text: 'LoginName', value: 'LoginName', align: 'left', sortable: true},
+                    {text: 'FirstName', value: 'FirstName', align: 'left', sortable: true},
+                    {text: 'LastName', value: 'LastName', align: 'left', sortable: true},
+                    {text: 'Gender', value: 'Gender', align: 'left', sortable: true},
+                    {text: 'DateOfBirth', value: 'DateOfBirth', align: 'left', sortable: true},
+                    {text: 'CreatedAt', value: 'CreatedAt', align: 'left', sortable: true},
+                    {text: 'Actions', value: 'action', sortable: false },
                 ],
                 records: [],
             }

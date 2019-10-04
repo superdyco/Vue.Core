@@ -180,7 +180,8 @@ hgetall key //拿取值by hash
 cd /CleintApp
 npm run dev //development
 npm run prod //production
-npm run build  //publish
+npm run build:dev
+npm run build:prod
 ```
 ### Customize configuration
 ```

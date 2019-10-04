@@ -121,10 +121,15 @@ namespace Vue.Core
             //DI
             services.AddScoped<IUsersService<Users>, UsersService>();
             services.AddScoped<IUsersTokenService, UsersTokenService>();
+            services.AddScoped<IRolesService<Roles>, RolesService>();
             #region options
                 services.Configure<JwtSetting>(o => Configuration.GetSection("JwtSetting").Bind(o));
             #endregion
 
+            //可以存取Identity資料,在各Controller內
+            //public Class(IHttpContextAccessor httpContextAccessor)
+            services.AddHttpContextAccessor();
+            
             //關閉回傳Json格式時Camel case names by default (第一字母變小寫)
             services.AddControllers()
                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

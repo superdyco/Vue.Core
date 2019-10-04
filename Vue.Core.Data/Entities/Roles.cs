@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Vue.Core.Data.Entities
@@ -13,7 +14,7 @@ namespace Vue.Core.Data.Entities
         public bool Lock { get; set; }
         #region ICollection
         public virtual ICollection<RolesApps> RolesApps { get; set; }
-            public virtual ICollection<UsersRoles> UsersRoles { get; set; }
+        [JsonIgnore]   public virtual ICollection<UsersRoles> UsersRoles { get; set; }
         #endregion
     }
 }

@@ -34,8 +34,7 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="primary" :disabled="!valid" v-on:click.prevent="login">Login</v-btn>
-                                <v-btn color="primary" :disabled="!valid" v-on:click.prevent="create">Create User</v-btn>
+                                <v-btn color="primary" :disabled="!valid" v-on:click.prevent="login">Login</v-btn>                               
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -69,23 +68,11 @@
             login(){
                 this.submitted = true;
                 if (this.$refs.form.validate()) {
-                    this.$http.UsersServer.post(CONSTANTS.ENDPOINT.USERS.LOGIN,{Loginname:this.Loginname,Password:this.Password},false).then(data => {                                           
+                    this.$http.zServer.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.LOGIN,{Loginname:this.Loginname,Password:this.Password},false).then(data => {                                           
                             localStorage.setItem('user',JSON.stringify(data));
                             this.$router.push({ path: '/' });                        
                     });
                 }
-            },
-            create(){
-                this.submitted = true;                
-                // if (this.$refs.form.validate()) {
-                //     this.$http.apiPost({url: CONSTANTS.ENDPOINT.USERS.SIGNUP,data:{Loginname:this.Loginname,Password:this.Password}}).then(resp => {                     
-                //         if (resp && [200,201].includes(resp.status)) {                            
-                //             let data = resp.data;
-                //             //save to localstorage                            
-                //             localStorage.setItem('user',JSON.stringify(data))                            
-                //         }
-                //     });
-                // }
             }
         }
     }

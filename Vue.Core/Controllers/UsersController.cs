@@ -36,14 +36,15 @@ namespace Vue.Core.Controllers
     {
         private IUsersService<Users> _userService;
         private IUsersTokenService _usersTokenService;
-
+        private IRolesService<Roles> _RolesService;
         public UsersController(IDistributedCache distributedCache, ApplicationDbContext db,
-            IUsersService<Users> userService, IUsersTokenService usersTokenService,
+            IUsersService<Users> userService, IUsersTokenService usersTokenService,IRolesService<Roles> rolesService,
             IMapper mapper, IOptions<JwtSetting> jwtsetting)
             : base(distributedCache, db, mapper, jwtsetting)
         {
             _userService = userService;
             _usersTokenService = usersTokenService;
+            _RolesService = rolesService;
         }
 
         [AllowAnonymous]
@@ -96,7 +97,6 @@ namespace Vue.Core.Controllers
         [HttpPost]
         [Authorize(Policy = "ApiRead")]
         [Route("[action]")]
-        //[ProducesResponseType(typeof(PagingModel<List<UsersList>>), 200)]
         public async Task<IActionResult> GetAll(Service.Fitlers.UsersFilter data)
         {
             var model = _userService.GetAll(data);
@@ -107,5 +107,36 @@ namespace Vue.Core.Controllers
                 }
             ));
         }
+        
+        [HttpGet]
+        [Authorize(Policy = "ApiRead")]
+        [Route("[action]")]
+        public async Task<IActionResult> GetOne(Guid gid)
+        {
+            var model = _userService.GetByGId(gid);
+            return await Task.FromResult(Ok(model));
+        }
+        
+        [HttpPost]
+        [Authorize(Policy = "ApiWrite")]
+        [Route("[action]")]
+        public async Task<IActionResult> Create(Users data)
+        {
+            var u=_userService.Create(data);
+            _RolesService.Create(u.Id, data.RolesSelected);
+            return await Task.FromResult(Ok());
+        }
+        
+        [HttpPost]
+        [Authorize(Policy = "ApiWrite")]
+        [Route("[action]")]
+        public async Task<IActionResult> Update(Users data)
+        {
+            _userService.Update(data);
+            _RolesService.Update(data.Gid, data.RolesSelected);
+            return await Task.FromResult(Ok());
+        }
+        
+        
     }
 }

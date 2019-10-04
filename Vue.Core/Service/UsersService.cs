@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using Microsoft.EntityFrameworkCore;
 using Vue.Core.Common;
 using Vue.Core.Data;
 using Vue.Core.Data.Entities;
@@ -16,13 +18,18 @@ namespace Vue.Core.Service
 
         public PagingModel<Users> GetAll(Fitlers.UsersFilter filter)
         {
-            var query = filter.Query(_db.Users);
+            var query = filter.Query(_db.Users.Where(x=>!x.IsDeleted));
             return query;
         }
 
         public Users GetById(int id)
         {
             return _db.Users.Find(id);
+        }
+        
+        public Users GetByGId(Guid Gid)
+        {
+            return _db.Users.Include("UsersRoles.Roles").FirstOrDefault(x => x.Gid==Gid);
         }
 
         public Users Create(Users users)
@@ -39,7 +46,7 @@ namespace Vue.Core.Service
 
             users.PasswordHash = passwordHash;
             users.PasswordSalt = passwordSalt;
-
+            users.Id = default;
             _db.Users.Add(users);
             _db.SaveChanges();
 
@@ -48,7 +55,18 @@ namespace Vue.Core.Service
 
         public void Update(Users t)
         {
-            throw new System.NotImplementedException();
+            var u = _db.Users.FirstOrDefault(x => x.Gid == t.Gid);
+            if (u != null)
+            {
+                u.FirstName = t.FirstName;
+                u.LastName = t.LastName;
+                u.Email = t.Email;
+                u.Gender = t.Gender;
+                u.DateOfBirth = t.DateOfBirth;
+                _db.SaveChanges();
+            }
+
+            
         }
 
         public void Delete(int it)

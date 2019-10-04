@@ -3,7 +3,7 @@
         <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
             <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-                <span class="hidden-sm-and-down">展示網站</span>
+                <span class="hidden-sm-and-down">zLineBot</span>
             </v-toolbar-title>
         </v-app-bar> 
         <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>

@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.0</TargetFramework>       
 		<SpaRoot>ClientApp\</SpaRoot>       
 		<LangVersion>8</LangVersion>
+		 <OpenApiGenerateDocumentsOnBuild>false</OpenApiGenerateDocumentsOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
