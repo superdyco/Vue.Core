@@ -10,6 +10,7 @@ namespace Vue.Core.Model
             AllowNullCollections = true;
             CreateMap<Users, UsersList>();
             CreateMap<Roles, RolesJsonModel>();
+            CreateMap<News, NewsList>();
         }
     }
 }

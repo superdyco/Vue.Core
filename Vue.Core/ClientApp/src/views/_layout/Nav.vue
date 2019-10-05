@@ -70,7 +70,8 @@
                     text: 'settings',
                     model: false,
                     children: [
-                        {icon: 'list', text: 'User List', routename: 'userslist'}
+                        {icon: 'list', text: 'Users List', routename: 'userslist'},
+                        {icon: 'message', text: 'News List', routename: 'newslist'}
                     ],
                 },
                 {icon: 'face', text: 'About', routename: 'about'},

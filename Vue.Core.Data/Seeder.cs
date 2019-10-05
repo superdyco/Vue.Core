@@ -38,6 +38,13 @@ namespace Vue.Core.Data
                         AppsId = 2,
                         RolesId = 1,
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new RolesApps()
+                    {
+                        Id = 3, Gid = Guid.NewGuid(), Delete = true, Write = true, Read = true, Print = true,
+                        AppsId = 4,
+                        RolesId = 1,
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };
 
@@ -52,6 +59,16 @@ namespace Vue.Core.Data
                     {
                         Id = 2, Gid = Guid.NewGuid(), AppName = "UsersList", ParentId = 1,
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new Apps()
+                    {
+                        Id = 3, Gid = Guid.NewGuid(), AppName = "News",
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new Apps()
+                    {
+                        Id = 4, Gid = Guid.NewGuid(), AppName = "NewsList", ParentId = 3,
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };
 
@@ -61,29 +78,40 @@ namespace Vue.Core.Data
                     {
                         Id = 1, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/GetAll",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
                         Id = 2, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/GetOne",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
                         Id = 3, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/Update",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
                         Id = 4, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/Create",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
-                        Id = 5, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/News/GetOne",
+                        Id = 5, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetAll",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
-                        Id = 6, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/News/Update",
+                        Id = 6, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetOne",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
-                    }, new AppsApiCollection()
+                    },
+                    new AppsApiCollection()
                     {
-                        Id = 7, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/News/Create",
+                        Id = 7, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Update",
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new AppsApiCollection()
+                    {
+                        Id = 8, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Create",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };

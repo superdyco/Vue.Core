@@ -73,6 +73,52 @@ const data = [
                                 }
                             ]
                         }
+                    },
+                    {
+                        name: 'newslist',
+                        path: 'newslist',
+                        component: () => import('./views/setting/newslist.vue'),
+                        meta: {
+                            breadcrumb: [
+                                {
+                                    text: '首頁',
+                                    disabled: false,
+                                    href: "/",
+                                },
+                                {
+                                    text: ' 設定'
+                                },
+                                {
+                                    text: ' 新聞清單'
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        name: 'news',
+                        path: 'news/:Gid',
+                        component: () => import('./views/setting/news.vue'), props: true,
+                        meta: {
+                            breadcrumb: [
+                                {
+                                    text: '首頁',
+                                    disabled: false,
+                                    href: "/",
+                                },
+                                {
+                                    text: ' 設定'
+                                },
+                                {
+                                    text: ' 新聞清單',
+                                    disabled: false,
+                                    href: "/setting/newslist",
+                                }
+                                ,
+                                {
+                                    text: ' 新聞維護'
+                                }
+                            ]
+                        }
                     }
                 ]
             },

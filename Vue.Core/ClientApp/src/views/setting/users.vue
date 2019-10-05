@@ -194,8 +194,7 @@
             }
         },
         methods: {
-            submit() {
-                console.log(this.$refs.form.validate());
+            submit() {                
                 if (this.$refs.form.validate()) {
 
                     let cfg = {

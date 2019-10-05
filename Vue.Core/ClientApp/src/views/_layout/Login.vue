@@ -34,7 +34,8 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="primary" :disabled="!valid" v-on:click.prevent="login">Login</v-btn>                               
+                                <v-btn color="warning" :disabled="!valid" v-on:click.prevent="login">Login</v-btn>
+                                <v-btn color="primary" v-on:click.prevent="Fblogin"><v-icon dark right>mdi-facebook-box</v-icon>Login</v-btn>                               
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -47,6 +48,7 @@
 <script>
 
     import CONSTANTS from "@/api/constants";
+    import '@/plugins/facebook.js'
     export default {
         name: 'Login',
         data: () => ({
@@ -64,6 +66,21 @@
         created(){
             localStorage.clear();
         },
+        mounted(){
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '742801812827659',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v2.9'
+                });
+                FB.AppEvents.logPageView();
+
+                FB.getLoginStatus( response => {
+                    console.log('res', response)        // 這裡可以得到 fb 回傳的結果
+                })
+            };  
+        },
         methods:{
             login(){
                 this.submitted = true;
@@ -73,9 +90,19 @@
                             this.$router.push({ path: '/' });                        
                     });
                 }
+            },
+            Fblogin() {
+                let vm = this
+                FB.login(function (response) {
+                    console.log('res', response)
+                }, {
+                    scope: 'email, public_profile',
+                    return_scopes: true
+                })
             }
         }
     }
 
 
 </script>
+

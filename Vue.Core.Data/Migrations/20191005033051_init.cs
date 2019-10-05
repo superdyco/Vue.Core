@@ -29,6 +29,28 @@ namespace Vue.Core.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Gid = table.Column<Guid>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 30, nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 30, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Title = table.Column<string>(maxLength: 100, nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    StartDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "Date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
@@ -236,7 +258,9 @@ namespace Vue.Core.Data.Migrations
                     ExpiresTo = table.Column<DateTime>(nullable: true),
                     RefreshToken = table.Column<string>(nullable: true),
                     RefreshExpiresTo = table.Column<DateTime>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false)
+                    RefreshTimes = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -367,6 +391,9 @@ namespace Vue.Core.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clinics");
+
+            migrationBuilder.DropTable(
+                name: "News");
 
             migrationBuilder.DropTable(
                 name: "Order");

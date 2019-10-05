@@ -122,6 +122,7 @@ namespace Vue.Core
             services.AddScoped<IUsersService<Users>, UsersService>();
             services.AddScoped<IUsersTokenService, UsersTokenService>();
             services.AddScoped<IRolesService<Roles>, RolesService>();
+            services.AddScoped<INewsService<News>, NewsService>();
             #region options
                 services.Configure<JwtSetting>(o => Configuration.GetSection("JwtSetting").Bind(o));
             #endregion

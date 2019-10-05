@@ -58,10 +58,11 @@ namespace Vue.Core.Data
             //操作人
             
             string executor = "";
-            var identity = (ClaimsIdentity)_httpContextAccessor.HttpContext.User.Identity;
-            if (identity!=null)
+            
+            if (_httpContextAccessor.HttpContext!=null && _httpContextAccessor.HttpContext.User.Identity is ClaimsIdentity identity)
                 executor=identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.Surname)?.Value+" " +
                          identity.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.GivenName)?.Value;
+            
             foreach (var item in entityEntries.Where(t => t.State == EntityState.Added))
             {
                 if (item.CurrentValues.Properties.Any(x => x.Name == "Gid"))
@@ -99,6 +100,7 @@ namespace Vue.Core.Data
         public DbSet<Roles> Roles { get; set; }
         public DbSet<RolesApps> RolesApps { get; set; }
         public DbSet<Scheduler> Scheduler { get; set; }
+        public DbSet<News> News { get; set; }
         
 
         #endregion
