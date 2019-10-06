@@ -46,7 +46,7 @@
    
 </template>
 <script>
-
+    import Vue from 'vue';
     import CONSTANTS from "@/api/constants";
     import '@/plugins/facebook.js'
     export default {
@@ -72,13 +72,9 @@
                     appId      : '742801812827659',
                     cookie     : true,
                     xfbml      : true,
-                    version    : 'v2.9'
+                    version    : 'v4.0'
                 });
-                FB.AppEvents.logPageView();
-
-                FB.getLoginStatus( response => {
-                    console.log('res', response)        // 這裡可以得到 fb 回傳的結果
-                })
+                FB.AppEvents.logPageView();             
             };  
         },
         methods:{
@@ -90,11 +86,24 @@
                             this.$router.push({ path: '/' });                        
                     });
                 }
-            },
+            },           
             Fblogin() {
-                let vm = this
-                FB.login(function (response) {
-                    console.log('res', response)
+                let vm = this;
+                FB.login(function (response) {                    
+                    if (response.status==="connected"){
+                        console.log("登入成功");
+                        var accesstoken=response.authResponse.accessToken;
+                        console.log(accesstoken);
+                        vm.$http.zServer.fetch(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.FBLOGIN,{accessToken:accesstoken},false).then(data => {
+                            console.log(data);
+                            localStorage.setItem('user',JSON.stringify(data));
+                            vm.$router.push({ path: '/' });
+                        });
+                    }
+                    else{
+                        Vue.toasted.error('login failed', {icon: 'error'});
+                    }
+                              
                 }, {
                     scope: 'email, public_profile',
                     return_scopes: true

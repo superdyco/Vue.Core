@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Vue.Core.Common;
 using Vue.Core.Data;
 using Vue.Core.Data.Entities;
@@ -15,6 +16,44 @@ namespace Vue.Core.Service
     {
         private ApplicationDbContext _db;
         public UsersService(ApplicationDbContext db) => _db = db;
+
+        public Users FBLogin(string accessToken)
+        {
+            using (var client = new System.Net.Http.HttpClient())
+            {
+                client.BaseAddress = new Uri("https://graph.facebook.com");
+                HttpResponseMessage response = client.GetAsync($"me?fields=id,email,first_name,gender,last_name&access_token={accessToken}").Result;
+                response.EnsureSuccessStatusCode();
+                string result = response.Content.ReadAsStringAsync().Result;
+                var jsonRes = JsonConvert.DeserializeObject<dynamic>(result);
+                string userid = jsonRes["id"].ToString();
+                string first_name = jsonRes["first_name"]?.ToString();
+                string last_name = jsonRes["last_name"]?.ToString();
+                string gender = jsonRes["gender"]?.ToString();
+                string email = jsonRes["email"]?.ToString();
+                
+                if (!_db.Users.Any(x => x.LoginName == userid && x.IsDeleted == false))
+                {
+                    return Create(new Users()
+                    {
+                       FirstName = first_name,
+                       LastName = last_name,
+                       Gender = gender switch
+                       {
+                           "male" => Enums.Gender.Male,
+                           "female" => Enums.Gender.Female,
+                           _ => Enums.Gender.other
+                       },
+                       LoginName = userid,
+                       Email = email,
+                       Password = "p12345"
+                    });
+                }
+                else
+                    return _db.Users.FirstOrDefault(x => x.LoginName == userid);
+            }
+           
+        }
 
         public PagingModel<Users> GetAll(Fitlers.UsersFilter filter)
         {

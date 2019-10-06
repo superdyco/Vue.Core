@@ -69,6 +69,30 @@ namespace Vue.Core.Controllers
                 refresh_token = getRefreshToken.tokenString
             }));
         }
+        
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> FBLogin(string accessToken)
+        {
+            var user = _userService.FBLogin(accessToken);
+
+            if (user == null)
+                return Unauthorized();
+
+            var getToken = TokenMan.GenToken(user, _jwtsetting, _jwtsetting.Expire);
+            var getRefreshToken = TokenMan.GenToken(user, _jwtsetting, _jwtsetting.LongExpire);
+            var result = _usersTokenService.SaveToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
+                getToken.expireTo, getRefreshToken.expireTo);
+            if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return await Task.FromResult(Ok(new
+            {
+                access_token = getToken.tokenString,
+                refresh_token = getRefreshToken.tokenString
+            }));
+        }
+        
 
         [AllowAnonymous]
         [HttpPost]
