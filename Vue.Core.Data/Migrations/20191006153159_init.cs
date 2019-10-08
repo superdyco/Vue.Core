@@ -21,6 +21,8 @@ namespace Vue.Core.Data.Migrations
                     UpdatedBy = table.Column<string>(maxLength: 30, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     AppName = table.Column<string>(maxLength: 20, nullable: true),
+                    RouteName = table.Column<string>(maxLength: 20, nullable: true),
+                    IconClass = table.Column<string>(maxLength: 20, nullable: true),
                     ParentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

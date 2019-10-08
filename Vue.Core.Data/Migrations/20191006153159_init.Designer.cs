@@ -10,7 +10,7 @@ using Vue.Core.Data;
 namespace Vue.Core.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191005033051_init")]
+    [Migration("20191006153159_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,11 +42,19 @@ namespace Vue.Core.Data.Migrations
                     b.Property<Guid>("Gid")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("IconClass")
+                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(20);
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("RouteName")
+                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");

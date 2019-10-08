@@ -42,7 +42,7 @@ namespace Vue.Core.Dal
                     data = data.Where(x => x.Read);
                     break;
                 case Enums.ApiPolicy.Write:
-                    data = data.Where(x => x.Read);
+                    data = data.Where(x => x.Write);
                     break;
                 case Enums.ApiPolicy.Delete:
                     data = data.Where(x => x.Delete);

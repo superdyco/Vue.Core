@@ -37,8 +37,8 @@ namespace Vue.Core.Controllers
         private IRolesService<Roles> _RolesService;
      
         public RolesController(IDistributedCache distributedCache, ApplicationDbContext db,
-            IRolesService<Roles> rolesService,IMapper mapper, IOptions<JwtSetting> jwtsetting)
-            : base(distributedCache, db, mapper, jwtsetting)
+            IRolesService<Roles> rolesService,IMapper mapper, IOptions<JwtSetting> jwtsetting,IHttpContextAccessor httpContextAccessor)
+            : base(distributedCache, db, mapper, jwtsetting,httpContextAccessor)
         {
             _RolesService = rolesService;
         }

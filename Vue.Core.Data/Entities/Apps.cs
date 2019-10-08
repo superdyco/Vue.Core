@@ -12,7 +12,8 @@ namespace Vue.Core.Data.Entities
     public class Apps : BaseEntity
     {
         [MaxLength(20)] public string AppName { get; set; }
-      
+        [MaxLength(20)] public string RouteName { get; set; }
+        [MaxLength(20)] public string IconClass { get; set; }
         [ForeignKey("Id")] public virtual int? ParentId { get; set; }
         #region ICollection
         [JsonIgnore]public virtual ICollection<RolesApps> RolesApps { get; set; }

@@ -38,8 +38,8 @@ namespace Vue.Core.Controllers
         private IUsersTokenService _usersTokenService;
         public FakeTokenController(IDistributedCache distributedCache,ApplicationDbContext db,
             IUsersService<Users> userService,IUsersTokenService usersTokenService,
-            IMapper mapper,IOptions<JwtSetting> jwtsetting) 
-            :base(distributedCache,db,mapper,jwtsetting)
+            IMapper mapper,IOptions<JwtSetting> jwtsetting,IHttpContextAccessor httpContextAccessor) 
+            :base(distributedCache,db,mapper,jwtsetting,httpContextAccessor)
         {
             _userService = userService;
             _usersTokenService = usersTokenService;

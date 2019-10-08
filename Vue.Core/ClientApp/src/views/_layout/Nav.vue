@@ -60,22 +60,18 @@
 </template>
 
 <script>
-    export default {     
+    import CONSTANTS from "@/api/constants";
+    export default {
+        created() {
+                this.$http.zServer.post(CONSTANTS.ENDPOINT.NAV).then(data => {
+                    console.log(data);
+                    this.items=data.items
+                }).catch((error) => {
+                    console.log(error);
+                }).finally(() => this.loading = false);            
+        },
         data: () => ({           
-            items: [
-                {icon: 'home', text: 'Home', routename: 'home'},
-                {
-                    icon: 'keyboard_arrow_up',
-                    'icon-alt': 'keyboard_arrow_down',
-                    text: 'settings',
-                    model: false,
-                    children: [
-                        {icon: 'list', text: 'Users List', routename: 'userslist'},
-                        {icon: 'message', text: 'News List', routename: 'newslist'}
-                    ],
-                },
-                {icon: 'face', text: 'About', routename: 'about'},
-                {icon: 'close', text: 'Logout', routename: 'logout'},           ]
+            items: []
         }),
         methods: {
             linkTo(n) {

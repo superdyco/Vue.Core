@@ -4,6 +4,7 @@ CONSTANTS.ENDPOINT = {};
 CONSTANTS.ENDPOINT.TESTURL = "http://openlibrary.org/people/george08/lists.json";
 
 CONSTANTS.ENDPOINT.FAKETOKEN = "/api/FakeToken/Test";
+CONSTANTS.ENDPOINT.NAV = "/api/nav";
 
 CONSTANTS.ENDPOINT.USERS = {};
 CONSTANTS.ENDPOINT.USERS.BASE = "/api/Users";

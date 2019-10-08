@@ -38,8 +38,8 @@ namespace Vue.Core.Controllers
         
         public NewsController(IDistributedCache distributedCache, ApplicationDbContext db,
             INewsService<News> newsService, 
-            IMapper mapper, IOptions<JwtSetting> jwtsetting)
-            : base(distributedCache, db, mapper, jwtsetting)
+            IMapper mapper, IOptions<JwtSetting> jwtsetting,IHttpContextAccessor httpContextAccessor)
+            : base(distributedCache, db, mapper, jwtsetting,httpContextAccessor)
         {
             _newsService = newsService;
         }

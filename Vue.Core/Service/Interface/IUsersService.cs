@@ -9,5 +9,6 @@ namespace Vue.Core.Service.Interface
         T FBLogin(string accessToken);
         PagingModel<T> GetAll(Fitlers.UsersFilter filter);
         
+        
     }
 }

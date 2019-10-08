@@ -29,21 +29,20 @@ namespace Vue.Core.Data
                 {
                     new RolesApps()
                     {
-                        Id = 1, Gid = Guid.NewGuid(), AppsId = 1, RolesId = 1,
+                        Gid = Guid.NewGuid(),Delete = true, Write = true, Read = true, Print = true,
+                        AppsId = 3, RolesId = 1, 
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new RolesApps()
                     {
-                        Id = 2, Gid = Guid.NewGuid(), Delete = true, Write = true, Read = true, Print = true,
-                        AppsId = 2,
-                        RolesId = 1,
+                        Gid = Guid.NewGuid(), Delete = true, Write = true, Read = true, Print = true,
+                        AppsId = 4,RolesId = 1,
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new RolesApps()
                     {
-                        Id = 3, Gid = Guid.NewGuid(), Delete = true, Write = true, Read = true, Print = true,
-                        AppsId = 4,
-                        RolesId = 1,
+                        Gid = Guid.NewGuid(), Delete = true, Write = true, Read = true, Print = true,
+                        AppsId = 5,RolesId = 2,
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };
@@ -52,22 +51,32 @@ namespace Vue.Core.Data
                 {
                     new Apps()
                     {
-                        Id = 1, Gid = Guid.NewGuid(), AppName = "Users",
+                        Gid = Guid.NewGuid(), AppName = "home",RouteName = "home",IconClass = "home",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new Apps()
                     {
-                        Id = 2, Gid = Guid.NewGuid(), AppName = "UsersList", ParentId = 1,
+                        Gid = Guid.NewGuid(), AppName = "Setting",IconClass = "keyboard_arrow_up",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new Apps()
                     {
-                        Id = 3, Gid = Guid.NewGuid(), AppName = "News",
+                       Gid = Guid.NewGuid(), AppName = "Users", RouteName = "userslist",IconClass = "list",ParentId = 2,
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new Apps()
                     {
-                        Id = 4, Gid = Guid.NewGuid(), AppName = "NewsList", ParentId = 3,
+                        Gid = Guid.NewGuid(), AppName = "News", RouteName = "newslist", IconClass = "message",ParentId = 2,
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new Apps()
+                    {
+                        Gid = Guid.NewGuid(), AppName = "about",RouteName = "about",IconClass = "face",
+                        CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
+                    },
+                    new Apps()
+                    {
+                        Gid = Guid.NewGuid(), AppName = "logout",RouteName = "logout",IconClass = "close",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };
@@ -76,42 +85,42 @@ namespace Vue.Core.Data
                 {
                     new AppsApiCollection()
                     {
-                        Id = 1, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/GetAll",
+                        Gid = Guid.NewGuid(), AppsId = 3, RoutePath = "api/Users/GetAll",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 2, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/GetOne",
+                        Gid = Guid.NewGuid(), AppsId = 3, RoutePath = "api/Users/GetOne",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 3, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/Update",
+                        Gid = Guid.NewGuid(), AppsId = 3, RoutePath = "api/Users/Update",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 4, Gid = Guid.NewGuid(), AppsId = 2, RoutePath = "api/Users/Create",
+                       Gid = Guid.NewGuid(), AppsId = 3, RoutePath = "api/Users/Create",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 5, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetAll",
+                        Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetAll",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 6, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetOne",
+                       Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/GetOne",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 7, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Update",
+                        Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Update",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     },
                     new AppsApiCollection()
                     {
-                        Id = 8, Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Create",
+                        Gid = Guid.NewGuid(), AppsId = 4, RoutePath = "api/News/Create",
                         CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin"
                     }
                 };
@@ -121,7 +130,13 @@ namespace Vue.Core.Data
                 {
                     new Roles()
                     {
-                        Id = 1, Gid = Guid.NewGuid(), RoleName = "Admin", CreatedAt = DateTime.Now,
+                        Gid = Guid.NewGuid(), RoleName = "Admin", CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin", Lock = true,
+                        IsDeleted = false
+                    },
+                    new Roles()
+                    {
+                        Gid = Guid.NewGuid(), RoleName = "Member", CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin", Lock = true,
                         IsDeleted = false
                     }
@@ -131,7 +146,7 @@ namespace Vue.Core.Data
                 {
                     new UsersRoles()
                     {
-                        Id = 1, Gid = Guid.NewGuid(), CreatedAt = DateTime.Now, RolesId = 1, UsersId = 1,
+                        Gid = Guid.NewGuid(), CreatedAt = DateTime.Now, RolesId = 1, UsersId = 1,
                         UpdatedAt = DateTime.Now, CreatedBy = "Admin", UpdatedBy = "Admin", IsDeleted = false
                     }
                 };
@@ -142,7 +157,7 @@ namespace Vue.Core.Data
                 {
                     new Users
                     {
-                        Id = 1, Gid = Guid.NewGuid(),
+                        Gid = Guid.NewGuid(),
                         LoginName = "admin", PasswordHash = passwordHash, PasswordSalt = passwordSalt,
                         FirstName = "Dyco", LastName = " Demo", Email = "", Gender = Enums.Gender.Male,
                         DateOfBirth = DateTime.Now,

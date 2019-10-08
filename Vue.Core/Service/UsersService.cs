@@ -34,20 +34,28 @@ namespace Vue.Core.Service
                 
                 if (!_db.Users.Any(x => x.LoginName == userid && x.IsDeleted == false))
                 {
-                    return Create(new Users()
+                    var u=Create(new Users()
                     {
-                       FirstName = first_name,
-                       LastName = last_name,
-                       Gender = gender switch
-                       {
-                           "male" => Enums.Gender.Male,
-                           "female" => Enums.Gender.Female,
-                           _ => Enums.Gender.other
-                       },
-                       LoginName = userid,
-                       Email = email,
-                       Password = "p12345"
+                        FirstName = first_name,
+                        LastName = last_name,
+                        Gender = gender switch
+                        {
+                            "male" => Enums.Gender.Male,
+                            "female" => Enums.Gender.Female,
+                            _ => Enums.Gender.other
+                        },
+                        LoginName = userid,
+                        Email = email,
+                        Password = "p12345"
                     });
+                    //加入一般會員功能
+                    _db.UsersRoles.Add(new UsersRoles()
+                    {
+                        UsersId = u.Id,
+                        RolesId = 2
+                    });
+                    _db.SaveChanges();
+                    return u;
                 }
                 else
                     return _db.Users.FirstOrDefault(x => x.LoginName == userid);
