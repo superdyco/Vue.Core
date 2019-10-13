@@ -38,9 +38,9 @@ services:
     volumes:
       - redis:/var/lib/redis
     networks:
-          - docker-network
-    restart: unless-stopped
-    
+      - docker-network
+    restart: unless-stopped 
+      
 networks:
   docker-network:
     driver: bridge

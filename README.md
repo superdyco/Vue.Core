@@ -6,16 +6,36 @@
 5. nodejs 12.10.0
 6. redis cache
 7. nLOG
-
+8. docker & docker-compose
 
 # Vue + asp.net core
 此專案主要是要實現幾個功能需求
-1. 完整的前後端分離,ClientApp 也可以做到獨立執行
-2. 程式執行後,前端可以做到webpack的HMR功能(Hot Reload)
-3. 使用Jwt做驗證機制,有refresh token機制,會自動交換token
-    > short token : 2 hours, long token : 7 days
-4. 可以運作在docker環境
-5. 
+1. windows/mac 皆能開發使用
+2. 完整的前後端分離,ClientApp也可以做到獨立執行
+3. 程式執行後,實現webpack的HMR功能(Hot Reload)
+4. 使用Jwt做驗證機制,有refresh token機制,會自動交換token
+   + short token : 2 hours 
+   + long token : 7 days
+5. Facebook 登錄實作
+6. 運作在docker環境
+
+#### Future
+1. 一鍵測試怖署(CI/CD)
+2. Line Bot 整合應用
+
+
+# Step By Step to Build
+1. make sure installed below env.
+    - .net core 3 runtime
+    - vue cli 3.11
+    - nodejs 12.10.0 
+    - docker & docker-compose
+2. run .\startup-docker.sh
+3. run .\shell\update-database.sh
+4. run publish2docker.sh
+6. open browser and access http://localhost:7080 or https://localhost:7081(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
+      
+
 
 # .net core
 1. 安裝 postgres /dotnet ef tools
@@ -32,6 +52,11 @@ dotnet tool install --global dotnet-ef
    - update database    
 ```
 ./shell/update-database.sh
+```
+
+3.publish
+```
+./shell/publish.sh
 ```
 
 # startup docker
@@ -80,102 +105,9 @@ get key //拿取值 by string
 hgetall key //拿取值by hash
 ```
 
-### .csproj
-```config
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>       
-		<SpaRoot>ClientApp\</SpaRoot>       
-		<LangVersion>8</LangVersion>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="9.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="3.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-        <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
-        <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.5.0" />
-        <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
-        <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.5" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0-preview9" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
-    </ItemGroup>
-
-  <ItemGroup>
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Content Remove="ClientApp\**" />
-    <Content Update="nlog.config">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  
-  <ItemGroup>    
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Vue.Core.Common\Vue.Core.Common.csproj" />
-    <ProjectReference Include="..\Vue.Core.Dal\Vue.Core.Dal.csproj" />
-    <ProjectReference Include="..\Vue.Core.Data\Vue.Core.Data.csproj" />
-    <ProjectReference Include="..\Vue.Core.Model\Vue.Core.Model.csproj" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Authentication.JwtBearer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authentication.jwtbearer\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.SpaServices, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.spaservices\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.SpaServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.identitymodel.tokens\5.3.0\lib\netstandard2.0\Microsoft.IdentityModel.Tokens.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.3.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-	<Target Name="EnsureNode">
-	  <Exec Command="node --version" ContinueOnError="true">
-		<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-	  </Exec>
-	  <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-	</Target>
- 
- 
-  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <ItemGroup>
-        <FilesToDelete Include="wwwroot\**\*" />
-    </ItemGroup>
-    <Delete Files="@(FilesToDelete)" />
-	<CallTarget Targets="EnsureNode" />	
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install --ignore-scripts" />
-	<Message Importance="high" Text="npm run build ..." />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:prod" />
-
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="wwwroot\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-  </Target>  
-</Project>
-
-```
-
 # vue 
 
-### Runing
+### Running
 ```
 cd /CleintApp
 npm run dev //development
@@ -189,6 +121,7 @@ global [.env] file
 Production [.env.production] file
 Development [.env.development] file
 ```
+
 
 # other issue
 

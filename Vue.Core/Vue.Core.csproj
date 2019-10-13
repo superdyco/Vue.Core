@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>       
 		<SpaRoot>ClientApp\</SpaRoot>       
-		<LangVersion>8</LangVersion>
-		 <OpenApiGenerateDocumentsOnBuild>false</OpenApiGenerateDocumentsOnBuild>
+		<LangVersion>8</LangVersion>			 		 
+		<OpenApiGenerateDocumentsOnBuild>false</OpenApiGenerateDocumentsOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,8 +17,8 @@
         <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
         <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.5.0" />
         <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
-        <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.5" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0-preview9" />
+        <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
     </ItemGroup>
@@ -33,8 +33,7 @@
   </ItemGroup>
 
   
-  <ItemGroup>    
-    <Folder Include="wwwroot" />    
+  <ItemGroup>         
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -45,42 +44,5 @@
     <ProjectReference Include="..\Vue.Core.Data\Vue.Core.Data.csproj" />
     <ProjectReference Include="..\Vue.Core.Model\Vue.Core.Model.csproj" />
   </ItemGroup>
-
-  
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\css\app.aa3099a2.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-771ff699.859911ce.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-e474f648.96e22f75.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\css\chunk-vendors.97e519a2.css" />
-  </ItemGroup>
-
-	<Target Name="EnsureNode">
-	  <Exec Command="node --version" ContinueOnError="true">
-		<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-	  </Exec>
-	  <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-	</Target>
- 
- 
-  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <ItemGroup>
-        <FilesToDelete Include="wwwroot\**\*" />
-    </ItemGroup>
-    <Delete Files="@(FilesToDelete)" />
-	<CallTarget Targets="EnsureNode" />	
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install --ignore-scripts" />
-	<Message Importance="high" Text="npm run build ..." />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:prod" />
-
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="wwwroot\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-  </Target>
   
 </Project>

@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  zlinebot:
+    container_name: zlinebot_container
+    image: zlinebot:production
+    ports:
+      - '7080:80'
+      - '7081:443'
+    networks:
+      - docker-network
+        
+networks:
+  docker-network:
+    driver: bridge
