@@ -44,5 +44,12 @@
     <ProjectReference Include="..\Vue.Core.Data\Vue.Core.Data.csproj" />
     <ProjectReference Include="..\Vue.Core.Model\Vue.Core.Model.csproj" />
   </ItemGroup>
+
+  
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Tools\nUnit.Console\nunit-agent-x86.exe.config" />
+    <_ContentIncludedByDefault Remove="Tools\nUnit.Console\nunit-agent.exe.config" />
+    <_ContentIncludedByDefault Remove="Tools\nUnit.Console\nunit3-console.exe.config" />
+  </ItemGroup>
   
 </Project>

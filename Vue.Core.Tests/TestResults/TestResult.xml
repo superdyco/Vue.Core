@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="134b389d-61e7-4495-9245-0b395ef04a6b" name="dyco@DESKTOP-JQ27UAA 2019-10-16 17:04:24" runUser="DESKTOP-JQ27UAA\dyco" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2019-10-16T17:04:24.4693333+08:00" queuing="2019-10-16T17:04:24.4693333+08:00" start="2019-10-16T17:04:18.5627576+08:00" finish="2019-10-16T17:04:24.6302751+08:00" />
+  <TestSettings name="default" id="653ddb0a-e0ee-4626-8857-19401e7febcf">
+    <Deployment runDeploymentRoot="dyco_DESKTOP-JQ27UAA_2019-10-16_17_04_24" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="4eaa50d7-fdf3-4626-88e2-5ec829ab845b" testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" testName="TestGetUsers" computerName="DESKTOP-JQ27UAA" duration="00:00:00.3437509" startTime="2019-10-16T17:04:24.0000000+08:00" endTime="2019-10-16T17:04:24.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4eaa50d7-fdf3-4626-88e2-5ec829ab845b">
+      <Output>
+        <StdOut>info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
+      &#xD;
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END&#xD;
+                    FROM information_schema.tables&#xD;
+                    WHERE table_type = 'BASE TABLE' AND table_schema NOT IN ('pg_catalog', 'information_schema')&#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT EXISTS (&#xD;
+          SELECT 1&#xD;
+          FROM "Users" AS u)&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]&#xD;
+      User profile is available. Using 'C:\Users\dyco\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/Users/GetAll/ application/json; charset=utf-8 &#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Executing DbCommand [Parameters=[@__path_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT a."Id", a."AppsId", a."CreatedAt", a."CreatedBy", a."Gid", a."Hits", a."IsDeleted", a."RoutePath", a."UpdatedAt", a."UpdatedBy"&#xD;
+      FROM "AppsApiCollection" AS a&#xD;
+      WHERE ((a."RoutePath" = @__path_0) AND ((a."RoutePath" IS NOT NULL) AND (@__path_0 IS NOT NULL))) OR ((a."RoutePath" IS NULL) AND (@__path_0 IS NULL))&#xD;
+      LIMIT 1&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Failed to determine the https port for redirect.&#xD;
+info: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler[2]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Successfully validated the token.&#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Executing DbCommand [Parameters=[@__id_0='?' (DbType = Int32), @__path_1='?'], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT EXISTS (&#xD;
+          SELECT 1&#xD;
+          FROM "Users" AS u&#xD;
+          INNER JOIN "UsersRoles" AS u0 ON u."Id" = u0."UsersId"&#xD;
+          INNER JOIN "Roles" AS r ON u0."RolesId" = r."Id"&#xD;
+          INNER JOIN "RolesApps" AS r0 ON r."Id" = r0."RolesId"&#xD;
+          INNER JOIN "Apps" AS a ON r0."AppsId" = a."Id"&#xD;
+          INNER JOIN "AppsApiCollection" AS a0 ON a."Id" = a0."AppsId"&#xD;
+          WHERE ((((((((u."Id" = @__id_0) AND (@__id_0 IS NOT NULL)) AND (((a0."RoutePath" = @__path_1) AND ((a0."RoutePath" IS NOT NULL) AND (@__path_1 IS NOT NULL))) OR ((a0."RoutePath" IS NULL) AND (@__path_1 IS NULL)))) AND (u0."IsDeleted" = FALSE)) AND (r."IsDeleted" = FALSE)) AND (r0."IsDeleted" = FALSE)) AND (a."IsDeleted" = FALSE)) AND (a0."IsDeleted" = FALSE)) AND r0."Read")&#xD;
+info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[1]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Authorization was successful.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Executing endpoint 'Vue.Core.Controllers.UsersController.GetAll (Vue.Core)'&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(Vue.Core.Service.Fitlers.UsersFilter) on controller Vue.Core.Controllers.UsersController (Vue.Core).&#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT COUNT(*)::INT&#xD;
+      FROM "Users" AS u&#xD;
+      WHERE NOT (u."IsDeleted")&#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Executing DbCommand [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
+      FROM "Users" AS u&#xD;
+      WHERE NOT (u."IsDeleted")&#xD;
+      ORDER BY u."CreatedAt" DESC&#xD;
+      LIMIT @__p_1 OFFSET @__p_0&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Executing ObjectResult, writing value of type '&lt;&gt;f__AnonymousType0`2[[System.Collections.Generic.List`1[[Vue.Core.Model.UsersList, Vue.Core.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[2]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Executed action Vue.Core.Controllers.UsersController.GetAll (Vue.Core) in 100.9427ms&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Executed endpoint 'Vue.Core.Controllers.UsersController.GetAll (Vue.Core)'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQI2VB63B4M, SpanId:|9a84a70f-45a39b7798d3a465., TraceId:9a84a70f-45a39b7798d3a465, ParentId:&#xD;
+      Request finished in 272.74830000000003ms 200 application/json; charset=utf-8</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="86c1257f-889b-41f1-898f-4bfb0e21e44b" testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" testName="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" computerName="DESKTOP-JQ27UAA" duration="00:00:01.1741620" startTime="2019-10-16T17:04:22.0000000+08:00" endTime="2019-10-16T17:04:24.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="86c1257f-889b-41f1-898f-4bfb0e21e44b">
+      <Output>
+        <StdOut>info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
+      &#xD;
+                    SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END&#xD;
+                    FROM information_schema.tables&#xD;
+                    WHERE table_type = 'BASE TABLE' AND table_schema NOT IN ('pg_catalog', 'information_schema')&#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT EXISTS (&#xD;
+          SELECT 1&#xD;
+          FROM "Users" AS u)&#xD;
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]&#xD;
+      User profile is available. Using 'C:\Users\dyco\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Request starting HTTP/1.1 POST http://localhost/api/Users/Login/ application/json; charset=utf-8 &#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Executing DbCommand [Parameters=[@__path_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT a."Id", a."AppsId", a."CreatedAt", a."CreatedBy", a."Gid", a."Hits", a."IsDeleted", a."RoutePath", a."UpdatedAt", a."UpdatedBy"&#xD;
+      FROM "AppsApiCollection" AS a&#xD;
+      WHERE ((a."RoutePath" = @__path_0) AND ((a."RoutePath" IS NOT NULL) AND (@__path_0 IS NOT NULL))) OR ((a."RoutePath" IS NULL) AND (@__path_0 IS NULL))&#xD;
+      LIMIT 1&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Failed to determine the https port for redirect.&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Executing endpoint 'Vue.Core.Controllers.UsersController.Login (Vue.Core)'&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Vue.Core.Model.LoginModel) on controller Vue.Core.Controllers.UsersController (Vue.Core).&#xD;
+info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executing DbCommand [Parameters=[@__loginname_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
+      FROM "Users" AS u&#xD;
+      WHERE ((u."LoginName" = @__loginname_0) AND ((u."LoginName" IS NOT NULL) AND (@__loginname_0 IS NOT NULL))) OR ((u."LoginName" IS NULL) AND (@__loginname_0 IS NULL))&#xD;
+      LIMIT 2&#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executing DbCommand [Parameters=[@__userid_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
+      SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
+      FROM "Users" AS u&#xD;
+      WHERE (u."Id" = @__userid_0) AND (@__userid_0 IS NOT NULL)&#xD;
+      LIMIT 2&#xD;
+info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executing DbCommand [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
+      INSERT INTO "UsersToken" ("CreatedAt", "ExpiresTo", "RefreshExpiresTo", "RefreshTimes", "RefreshToken", "Token", "UpdatedAt", "UsersId")&#xD;
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)&#xD;
+      RETURNING "Id";&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executing ObjectResult, writing value of type '&lt;&gt;f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.&#xD;
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[2]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executed action Vue.Core.Controllers.UsersController.Login (Vue.Core) in 482.2069ms&#xD;
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Executed endpoint 'Vue.Core.Controllers.UsersController.Login (Vue.Core)'&#xD;
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQI2VB63B4L, SpanId:|9a84a70e-45a39b7798d3a465., TraceId:9a84a70e-45a39b7798d3a465, ParentId:&#xD;
+      Request finished in 872.9695ms 200 application/json; charset=utf-8</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" storage="c:\users\dyco\desktop\vue-project\vue.core\vue.core.tests\bin\debug\netcoreapp3.0\vue.core.tests.dll" id="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65">
+      <Execution id="86c1257f-889b-41f1-898f-4bfb0e21e44b" />
+      <TestMethod codeBase="C:\Users\dyco\Desktop\Vue-project\Vue.Core\Vue.Core.Tests\bin\Debug\netcoreapp3.0\Vue.Core.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Vue.Core.Tests.AppTest" name="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" />
+    </UnitTest>
+    <UnitTest name="TestGetUsers" storage="c:\users\dyco\desktop\vue-project\vue.core\vue.core.tests\bin\debug\netcoreapp3.0\vue.core.tests.dll" id="4c4032a7-9b16-8e59-1ef8-4667d3138285">
+      <Execution id="4eaa50d7-fdf3-4626-88e2-5ec829ab845b" />
+      <TestMethod codeBase="C:\Users\dyco\Desktop\Vue-project\Vue.Core\Vue.Core.Tests\bin\Debug\netcoreapp3.0\Vue.Core.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Vue.Core.Tests.AppTest" name="TestGetUsers" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" executionId="4eaa50d7-fdf3-4626-88e2-5ec829ab845b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" executionId="86c1257f-889b-41f1-898f-4bfb0e21e44b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="不在清單中的結果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有載入的結果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 3.15.1.0: Test execution started&#xD;
+Running all tests in C:\Users\dyco\Desktop\Vue-project\Vue.Core\Vue.Core.Tests\bin\Debug\netcoreapp3.0\Vue.Core.Tests.dll&#xD;
+   NUnit3TestExecutor converted 2 of 2 NUnit test cases&#xD;
+NUnit Adapter 3.15.1.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

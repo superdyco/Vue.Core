@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue.Core.Model", "Vue.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue.Core.Dal", "Vue.Core.Dal\Vue.Core.Dal.csproj", "{80E2A6EB-BC25-413E-9165-A912A3B883DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue.Core.Tests", "Vue.Core.Tests\Vue.Core.Tests.csproj", "{27FD3500-994E-4658-ADD1-FFF82C347464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{80E2A6EB-BC25-413E-9165-A912A3B883DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E2A6EB-BC25-413E-9165-A912A3B883DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80E2A6EB-BC25-413E-9165-A912A3B883DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27FD3500-994E-4658-ADD1-FFF82C347464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27FD3500-994E-4658-ADD1-FFF82C347464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27FD3500-994E-4658-ADD1-FFF82C347464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27FD3500-994E-4658-ADD1-FFF82C347464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

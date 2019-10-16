@@ -17,12 +17,12 @@
    + short token : 2 hours 
    + long token : 7 days
 5. Facebook 登錄實作
-6. 運作在docker環境
+6. 運作在docker環境(Redis,Postgres,Web獨立分開)
+7. 發怖時會自動做測試後發怖至Docker (publish2docker.sh)
 
 #### Future
-1. 一鍵測試怖署(CI/CD)
-2. Line Bot 整合應用
-
+1. Line Bot 整合應用
+2. K8s
 
 # Step By Step to Build
 1. make sure installed below env.
@@ -32,8 +32,12 @@
     - docker & docker-compose
 2. run .\startup-docker.sh
 3. run .\shell\update-database.sh
-4. run publish2docker.sh
-6. open browser and access http://localhost:7080 or https://localhost:7081(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
+4. run publish2docker.sh    
+    - if just only run app,you can type in docker folder
+```
+docker-compose -f app.yml up
+```
+5. open browser and access http://localhost:7080 or https://localhost:7081(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
       
 
 
