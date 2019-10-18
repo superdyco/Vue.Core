@@ -23,6 +23,7 @@
 #### Future
 1. Line Bot 整合應用
 2. K8s
+3. SingleR
 
 # Step By Step to Build
 1. make sure installed below env.

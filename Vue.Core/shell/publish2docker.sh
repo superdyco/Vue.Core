@@ -33,7 +33,7 @@ then
         docker-compose -f app.yml down
         docker-compose -f app.yml up
         #清除Temp images
-        echo y|docker system prune --all
+        #echo y|docker system prune --all
     else
         echo "testing failed"
     fi
