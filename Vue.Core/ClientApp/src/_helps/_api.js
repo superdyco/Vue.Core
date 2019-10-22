@@ -18,9 +18,9 @@ const baseRequest = axios.create(baseConfig);
 baseRequest.interceptors.request.use(config => {
     NProgress.start();
     //加入jwt token
-    let user = JSON.parse(localStorage.getItem("user"));
-    if (user)
-        config.headers.Authorization = 'Bearer ' + user.access_token;    
+    // let user = JSON.parse(localStorage.getItem("user"));
+    // if (user)
+    //     config.headers.Authorization = 'Bearer ' + user.access_token;    
     
     return config;
 }, err => {
@@ -44,6 +44,8 @@ baseRequest.interceptors.response.use(data => {
     } else if (err.response && (err.response.status === 401) && err.response.headers["token-expired"]) {
         console.log("token過期啦")
         return Promise.reject(err);  //401 且為jwt token過期額外處理
+    } else if (err.response && (err.response.status === 401)){
+        Vue.toasted.error('登錄失敗或權限不足', {icon: 'error'});
     } else if (err.response && (err.response.status === 403)) {
         location.href = '/pages/' + err.response.status;
     } else if (!err.status) {
@@ -61,25 +63,29 @@ export function TokenCheck(){
         }).catch(err => {            
             if (err.response && err.response.headers["token-expired"] && err.response.status === 401)
                 r1({status: false, config: err.config});
-            else
-                j1(err);
+            else{
+                //longJwt Expired                
+                //localStorage.clear();
+                location.href = '/Login';                
+            }
         })
     }).then(data => {        
+        console.log(data.status);
         if (data.status === false) {
-            let getuser = JSON.parse(localStorage.getItem("user"));
-            let access_token = getuser.access_token;
-            let access_refreshtoken = getuser.refresh_token;
+            //let getuser = JSON.parse(localStorage.getItem("user"));
+            //let access_token = getuser.access_token;
+            //let access_refreshtoken = getuser.refresh_token;
             return new Promise(function (r2, j2) {
-                baseRequest.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.REFRESHTOKEN,
-                    {access_token: access_token, access_refreshtoken: access_refreshtoken})
+                baseRequest.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.REFRESHTOKEN)
                     .then(resp => {
-                        console.log("拿取新的Token");
-                        localStorage.setItem('user', JSON.stringify(resp.data));
+                        //console.log("拿取新的Token");
+                        //localStorage.setItem('user', JSON.stringify(resp.data));
                         r2(resp);
-                    }).catch(err => {                    
+                    }).catch(err => {
+                    console.log("還是拿不到")
                     //如果還是拿不到token,則登出
-                    localStorage.clear();
-                    location.href = '/';
+                    //localStorage.clear();
+                    location.href = '/Login';
                 });
             });
         }

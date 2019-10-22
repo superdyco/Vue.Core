@@ -17,10 +17,10 @@
                         <v-col cols="12" md="6">
                             <v-text-field
                                     v-model="LoginName"
-                                    :counter="10"
+                                    :counter="20"
                                     :rules="LoginNameRules"
                                     label="Login Name"
-                                    hint="must be less than 10 characters"
+                                    hint="must be less than 20 characters"
                                     :disabled="Gid!=null"
                                     required
                             ></v-text-field>
@@ -163,7 +163,7 @@
                 LoginName: '',
                 LoginNameRules: [
                     v => !!v || 'LoginName is required',
-                    v => (v && v.length <= 10) || 'LoginName must be less than 10 characters',
+                    v => (v && v.length <= 20) || 'LoginName must be less than 20 characters',
                     v => /^[A-Za-z0-9]+$/.test(v) || 'LoginName must be valid',
                 ],
                 Password: '',

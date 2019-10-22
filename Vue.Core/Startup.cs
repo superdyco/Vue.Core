@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Vue.Core.Data;
 using Vue.Core.Data.Entities;
 using Vue.Core.Common.Config;
@@ -67,6 +69,16 @@ namespace Vue.Core
                 options.RequireHttpsMetadata = false;
                 options.Events = new JwtBearerEvents()
                 {
+                    OnMessageReceived = context =>
+                    {
+                        var jwtToken = context.Request.Cookies["jwt_token"];
+                        if (jwtToken == null) return Task.CompletedTask;
+                        var json = JsonConvert.DeserializeObject<dynamic>(jwtToken);
+                        var accessToken = Convert.ToString(json.access_token);
+                        context.Token = !string.IsNullOrWhiteSpace(accessToken) ? (string) accessToken : "";
+
+                        return Task.CompletedTask;
+                    },
                     OnAuthenticationFailed = context =>
                     {
                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
@@ -191,13 +203,13 @@ namespace Vue.Core
             });
 
             //if database not found,will auto created and seed data
-           
+
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 context.Database.EnsureCreated();
             }
-            
+
             var seeder = new Seeder(app.ApplicationServices);
             seeder.Init();
         }

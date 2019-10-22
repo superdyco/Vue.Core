@@ -5,7 +5,7 @@
 </template>
 <script>
   import CONSTANTS from "@/api/constants";
-  import {authHeader} from "@/_helps/auth-header.js"
+
   export default {
     name: 'about',    
     methods:{    

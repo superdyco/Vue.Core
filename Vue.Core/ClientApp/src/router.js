@@ -145,13 +145,13 @@ const data = [
     {path: "/login", name: "login", component: () => import('@_layout/Login.vue')},
     {
         path: "/logout", name: "logout", beforeEnter(to, from, next) {
-            localStorage.clear();
+            //localStorage.clear();
             return next('/login')
         }
     },
     {path: "/pages/:statuscode", component: () => import('@_pages'), props: true},
     {path: '/swagger/*'},
-    {path: '/api/*'},    
+    {path: '/api/*'},
     {path: "*", component: () => import('@_pages'), props: {statuscode: 404}}
 ];
 
@@ -162,13 +162,14 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    NProgress.start();
-    const publicPages = ['/login'];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem('user');
-    if (authRequired && !loggedIn) {
-        return next('/login')
-    }
+    //NProgress.start();
+    //const publicPages = ['/login'];
+    //const authRequired = !publicPages.includes(to.path);
+    // const loggedIn = localStorage.getItem('user');
+    // if (authRequired && !loggedIn) {
+    //if (authRequired) {
+    //    return next('/login')
+    //}
     next()
 });
 

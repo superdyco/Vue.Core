@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +39,11 @@ namespace Vue.Core.Controllers
         private IUsersService<Users> _userService;
         private IUsersTokenService _usersTokenService;
         private IRolesService<Roles> _RolesService;
+
         public UsersController(IDistributedCache distributedCache, ApplicationDbContext db,
-            IUsersService<Users> userService, IUsersTokenService usersTokenService,IRolesService<Roles> rolesService,
-            IMapper mapper, IOptions<JwtSetting> jwtsetting,IHttpContextAccessor httpContextAccessor)
-            : base(distributedCache, db, mapper, jwtsetting,httpContextAccessor)
+            IUsersService<Users> userService, IUsersTokenService usersTokenService, IRolesService<Roles> rolesService,
+            IMapper mapper, IOptions<JwtSetting> jwtsetting, IHttpContextAccessor httpContextAccessor)
+            : base(distributedCache, db, mapper, jwtsetting, httpContextAccessor)
         {
             _userService = userService;
             _usersTokenService = usersTokenService;
@@ -62,19 +65,26 @@ namespace Vue.Core.Controllers
             var result = _usersTokenService.SaveToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
                 getToken.expireTo, getRefreshToken.expireTo);
             if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
-
-            return await Task.FromResult(Ok(new
-            {
-                access_token = getToken.tokenString,
-                refresh_token = getRefreshToken.tokenString
-            }));
+            Response.Cookies.Append("jwt_token", JsonConvert.SerializeObject(new
+                {
+                    access_token = getToken.tokenString,
+                    refresh_token = getRefreshToken.tokenString
+                }),
+                new CookieOptions()
+                {
+                    Expires = DateTime.Now.AddMinutes(_jwtsetting.LongExpire),
+                    HttpOnly = true,
+                    Path = "/"
+                });
+            return await Task.FromResult(Ok());
         }
-        
+
         [AllowAnonymous]
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> FBLogin(string accessToken)
         {
+            
             var user = _userService.FBLogin(accessToken);
 
             if (user == null)
@@ -85,21 +95,42 @@ namespace Vue.Core.Controllers
             var result = _usersTokenService.SaveToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
                 getToken.expireTo, getRefreshToken.expireTo);
             if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
-
-            return await Task.FromResult(Ok(new
-            {
-                access_token = getToken.tokenString,
-                refresh_token = getRefreshToken.tokenString
-            }));
+            Response.Cookies.Append("jwt_token", JsonConvert.SerializeObject(new
+                {
+                    access_token = getToken.tokenString,
+                    refresh_token = getRefreshToken.tokenString
+                }),
+                new CookieOptions()
+                {
+                    Expires = DateTime.Now.AddMinutes(_jwtsetting.LongExpire),
+                    HttpOnly = true,
+                    Path = "/"
+                });
+            return await Task.FromResult(Ok());
         }
         
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            Response.Cookies.Delete("jwt_token");
+            return await Task.FromResult(Ok());
+        }
+
 
         [AllowAnonymous]
         [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> RefreshToken(RefreshTokenModel data)
+        public async Task<IActionResult> RefreshToken()
         {
-            var usersid = _usersTokenService.CheckRefreshToken(data.access_token, data.access_refreshtoken);
+            var jwtToken = Request.Cookies["jwt_token"];
+            if (jwtToken == null) return Unauthorized();
+            var json = JsonConvert.DeserializeObject<dynamic>(jwtToken);
+            string accessToken = Convert.ToString(json.access_token);
+            string refreshToken = Convert.ToString(json.refresh_token);
+            var usersid = _usersTokenService.CheckRefreshToken(accessToken, refreshToken);
+            
             if (usersid == 0)
                 return Unauthorized();
             var user = _userService.GetById(usersid.Value);
@@ -109,12 +140,18 @@ namespace Vue.Core.Controllers
             var result = _usersTokenService.UpdateToken(user.Id, getToken.tokenString, getRefreshToken.tokenString,
                 getToken.expireTo, getRefreshToken.expireTo);
             if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
-
-            return await Task.FromResult(Ok(new
-            {
-                access_token = getToken.tokenString,
-                refresh_token = getRefreshToken.tokenString
-            }));
+            Response.Cookies.Append("jwt_token", JsonConvert.SerializeObject(new
+                {
+                    access_token = getToken.tokenString,
+                    refresh_token = getRefreshToken.tokenString
+                }),
+                new CookieOptions()
+                {
+                    Expires = DateTime.Now.AddMinutes(_jwtsetting.LongExpire),
+                    HttpOnly = true,
+                    Path = "/"
+                });
+            return await Task.FromResult(Ok());
         }
 
 
@@ -131,7 +168,7 @@ namespace Vue.Core.Controllers
                 }
             ));
         }
-        
+
         [HttpGet]
         [Authorize(Policy = "ApiRead")]
         [Route("[action]")]
@@ -140,17 +177,17 @@ namespace Vue.Core.Controllers
             var model = _userService.GetByGId(gid);
             return await Task.FromResult(Ok(model));
         }
-        
+
         [HttpPost]
         [Authorize(Policy = "ApiWrite")]
         [Route("[action]")]
         public async Task<IActionResult> Create(Users data)
         {
-            var u=_userService.Create(data);
+            var u = _userService.Create(data);
             _RolesService.Create(u.Id, data.RolesSelected);
             return await Task.FromResult(Ok());
         }
-        
+
         [HttpPost]
         [Authorize(Policy = "ApiWrite")]
         [Route("[action]")]
@@ -160,7 +197,5 @@ namespace Vue.Core.Controllers
             _RolesService.Update(data.Gid, data.RolesSelected);
             return await Task.FromResult(Ok());
         }
-        
-        
     }
 }

@@ -64,7 +64,10 @@
             submitted: false
         }),
         created(){
-            localStorage.clear();
+            //localStorage.clear();
+            //clear server cookies for httponly
+            this.$http.zServer.fetch(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.LOGOUT,{},false).then(data => {
+            })
         },
         mounted(){
             window.fbAsyncInit = function() {
@@ -82,7 +85,7 @@
                 this.submitted = true;
                 if (this.$refs.form.validate()) {
                     this.$http.zServer.post(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.LOGIN,{Loginname:this.Loginname,Password:this.Password},false).then(data => {                                           
-                            localStorage.setItem('user',JSON.stringify(data));
+                            //localStorage.setItem('user',JSON.stringify(data));
                             this.$router.push({ path: '/' });                        
                     });
                 }
@@ -92,11 +95,9 @@
                 FB.login(function (response) {                    
                     if (response.status==="connected"){
                         console.log("登入成功");
-                        var accesstoken=response.authResponse.accessToken;
-                        console.log(accesstoken);
-                        vm.$http.zServer.fetch(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.FBLOGIN,{accessToken:accesstoken},false).then(data => {
-                            console.log(data);
-                            localStorage.setItem('user',JSON.stringify(data));
+                        var accesstoken=response.authResponse.accessToken;                        
+                        vm.$http.zServer.fetch(CONSTANTS.ENDPOINT.USERS.BASE + CONSTANTS.ENDPOINT.USERS.FBLOGIN,{accessToken:accesstoken},false).then(data => {                            
+                            //localStorage.setItem('user',JSON.stringify(data));
                             vm.$router.push({ path: '/' });
                         });
                     }

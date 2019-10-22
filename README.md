@@ -13,7 +13,7 @@
 1. windows/mac 皆能開發使用
 2. 完整的前後端分離,ClientApp也可以做到獨立執行
 3. 程式執行後,實現webpack的HMR功能(Hot Reload)
-4. 使用Jwt做驗證機制,有refresh token機制,會自動交換token
+4. 使用Jwt做驗證機制(httponly),有refresh token機制,會自動交換token
    + short token : 2 hours 
    + long token : 7 days
 5. Facebook 登錄實作
