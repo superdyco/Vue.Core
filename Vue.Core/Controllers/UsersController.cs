@@ -151,7 +151,7 @@ namespace Vue.Core.Controllers
                     HttpOnly = true,
                     Path = "/"
                 });
-            return await Task.FromResult(Ok());
+           return await Task.FromResult(Ok());
         }
 
 

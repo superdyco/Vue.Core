@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -26,7 +28,7 @@ namespace Vue.Core.Tests
         private ApplicationDbContext db;
         private TestServer server;
         private HttpClient client;
-        private string access_token { get; set; }
+        private string cookies;
 
         [SetUp]
         [OneTimeSetUp]
@@ -58,23 +60,19 @@ namespace Vue.Core.Tests
         [Order(1)]
         public async Task TestLogin(string Loginname, string Password)
         {
+            string url = "/api/Users/Login/";
             var pdata = new {Loginname = Loginname, Password = Password};
             var data = JsonConvert.SerializeObject(pdata);
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/api/Users/Login/", content);
-            if (response.EnsureSuccessStatusCode().StatusCode == HttpStatusCode.OK
-            )
+            var response = await client.PostAsync(url, content);
+            if (response.EnsureSuccessStatusCode().StatusCode == HttpStatusCode.OK)
             {
-                var json = JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
-                access_token = Convert.ToString(json.access_token);
-                if (!string.IsNullOrWhiteSpace(access_token))
-                {
-                    Assert.IsTrue(true);
-                }
-                else
-                {
-                    Assert.IsFalse(true, "can't not found jwt access token'");
-                }
+               
+                IEnumerable<string> keys = null;
+                var jwtToken = response.Headers.Where(x=>x.Key=="Set-Cookie").Select(x=>x.Value).FirstOrDefault();
+                if (jwtToken != null)
+                    cookies = jwtToken.FirstOrDefault();
+                Assert.IsTrue(true);
             }
             else
             {
@@ -88,19 +86,17 @@ namespace Vue.Core.Tests
         {
             var data = JsonConvert.SerializeObject(new Service.Fitlers.UsersFilter()
             {
-                currentPage = 1, pageSize = 10,sortBy = new string[]{"CreatedAt"},
-                 sortDesc = new bool[]{true},
+                currentPage = 1, pageSize = 10, sortBy = new string[] {"CreatedAt"},
+                sortDesc = new bool[] {true},
             });
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Authorization=
-                new AuthenticationHeaderValue("Bearer", access_token);
+            content.Headers.Add("Cookie",cookies);
             var response = await client.PostAsync("/api/Users/GetAll/", content);
-            if (response.EnsureSuccessStatusCode().StatusCode == HttpStatusCode.OK
-            )
+            if (response.EnsureSuccessStatusCode().StatusCode == HttpStatusCode.OK)
             {
                 Assert.IsTrue(true);
             }
-            else
+            else                   
             {
                 Assert.IsFalse(true, response.EnsureSuccessStatusCode().StatusCode.ToString());
             }
