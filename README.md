@@ -39,8 +39,9 @@
 ```
 docker-compose -f app.yml up --build
 ```
-5. open browser and access http://localhost:8888 or https://localhost:8889(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
-      
+5. now,you can open your broswer and entry url 
+    - http://localhost:8888
+    - https://localhost 
 
 
 # .net core

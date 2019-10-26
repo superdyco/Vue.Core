@@ -30,8 +30,8 @@ then
         dotnet publish -r linux-x64 -c Release -o ./publish/ -p:PublishSingleFile=true
         docker build . -f ./Dockerfile -t zlinebot:production
         cd Vue.Core/docker
-        #docker-compose -f app.yml down
-        #docker-compose -f app.yml up --build
+        docker-compose -f app.yml down
+        docker-compose -f app.yml up --build
         #清除Temp images
         #echo y|docker system prune --all
     else
