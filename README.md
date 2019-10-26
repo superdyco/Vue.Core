@@ -7,6 +7,7 @@
 6. redis cache
 7. nLOG
 8. docker & docker-compose
+9. Nginx
 
 # Vue + asp.net core
 此專案主要是要實現幾個功能需求
@@ -17,7 +18,7 @@
    + short token : 2 hours 
    + long token : 7 days
 5. Facebook 登錄實作
-6. 運作在docker環境(Redis,Postgres,Web獨立分開)
+6. 運作在docker環境(Redis,Postgres,Nginx,Web獨立分開)
 7. 發怖時會自動做測試後發怖至Docker (publish2docker.sh)
 
 #### Future
@@ -36,9 +37,9 @@
 4. run publish2docker.sh    
     - if just only run app,you can type in docker folder
 ```
-docker-compose -f app.yml up
+docker-compose -f app.yml up --build
 ```
-5. open browser and access http://localhost:7080 or https://localhost:7081(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
+5. open browser and access http://localhost:8888 or https://localhost:8889(need install ssl [ref](https://docs.microsoft.com/zh-tw/aspnet/core/security/docker-https?view=aspnetcore-3.0))
       
 
 

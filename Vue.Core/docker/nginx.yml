@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  nginx:
+    container_name: nginx-container
+    build: ./nginx
+    restart: always
+    ports:
+      - "443:443"
+      - "8888:80"  
+#    depends_on:
+#      - zlinebot
+#    volumes:
+#      - ./log:/var/log/nginx      
+    networks:
+      - docker-network
+networks:
+  docker-network:
+    driver: bridge
