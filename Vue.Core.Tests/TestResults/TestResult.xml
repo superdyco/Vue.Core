@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TestRun id="1a0d09a8-a2c2-4177-8958-ad0691cc9bfc" name="dyco@DESKTOP-JQ27UAA 2019-10-24 00:23:01" runUser="DESKTOP-JQ27UAA\dyco" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2019-10-24T00:23:01.0955472+08:00" queuing="2019-10-24T00:23:01.0955472+08:00" start="2019-10-24T00:22:51.9676235+08:00" finish="2019-10-24T00:23:01.4421083+08:00" />
-  <TestSettings name="default" id="2224af94-024e-466e-91c5-77a5bab7096b">
-    <Deployment runDeploymentRoot="dyco_DESKTOP-JQ27UAA_2019-10-24_00_23_01" />
+<TestRun id="3bdc69cd-27e3-4dd2-bd95-bf8cab157415" name="dyco@DESKTOP-JQ27UAA 2019-10-31 16:06:57" runUser="DESKTOP-JQ27UAA\dyco" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2019-10-31T16:06:57.1467302+08:00" queuing="2019-10-31T16:06:57.1467302+08:00" start="2019-10-31T16:06:48.0956901+08:00" finish="2019-10-31T16:06:57.6101282+08:00" />
+  <TestSettings name="default" id="979448ff-d23c-4881-8481-524aec914677">
+    <Deployment runDeploymentRoot="dyco_DESKTOP-JQ27UAA_2019-10-31_16_06_57" />
   </TestSettings>
   <Results>
-    <UnitTestResult executionId="0697a07a-572d-4391-8885-a5ba42f9e160" testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" testName="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" computerName="DESKTOP-JQ27UAA" duration="00:00:01.0785890" startTime="2019-10-24T00:22:59.0000000+08:00" endTime="2019-10-24T00:23:00.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0697a07a-572d-4391-8885-a5ba42f9e160">
+    <UnitTestResult executionId="5db5c2dd-1ff3-40ff-b97e-a2e75f048976" testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" testName="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" computerName="DESKTOP-JQ27UAA" duration="00:00:01.0924010" startTime="2019-10-31T16:06:55.0000000+08:00" endTime="2019-10-31T16:06:56.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5db5c2dd-1ff3-40ff-b97e-a2e75f048976">
       <Output>
         <StdOut>info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
@@ -25,65 +25,65 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]&#xD;
       User profile is available. Using 'C:\Users\dyco\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Request starting HTTP/1.1 POST http://localhost/api/Users/Login/ application/json; charset=utf-8 &#xD;
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Executing DbCommand [Parameters=[@__path_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT a."Id", a."AppsId", a."CreatedAt", a."CreatedBy", a."Gid", a."Hits", a."IsDeleted", a."RoutePath", a."UpdatedAt", a."UpdatedBy"&#xD;
       FROM "AppsApiCollection" AS a&#xD;
       WHERE ((a."RoutePath" = @__path_0) AND ((a."RoutePath" IS NOT NULL) AND (@__path_0 IS NOT NULL))) OR ((a."RoutePath" IS NULL) AND (@__path_0 IS NULL))&#xD;
       LIMIT 1&#xD;
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Failed to determine the https port for redirect.&#xD;
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Executing endpoint 'Vue.Core.Controllers.UsersController.Login (Vue.Core)'&#xD;
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Vue.Core.Model.LoginModel) on controller Vue.Core.Controllers.UsersController (Vue.Core).&#xD;
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Executing DbCommand [Parameters=[@__loginname_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
       FROM "Users" AS u&#xD;
       WHERE ((u."LoginName" = @__loginname_0) AND ((u."LoginName" IS NOT NULL) AND (@__loginname_0 IS NOT NULL))) OR ((u."LoginName" IS NULL) AND (@__loginname_0 IS NULL))&#xD;
       LIMIT 2&#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Executing DbCommand [Parameters=[@__userid_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
       FROM "Users" AS u&#xD;
       WHERE (u."Id" = @__userid_0) AND (@__userid_0 IS NOT NULL)&#xD;
       LIMIT 2&#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Executing DbCommand [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
       INSERT INTO "UsersToken" ("CreatedAt", "ExpiresTo", "RefreshExpiresTo", "RefreshTimes", "RefreshToken", "Token", "UpdatedAt", "UsersId")&#xD;
       VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)&#xD;
       RETURNING "Id";&#xD;
 info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
       Executing HttpStatusCodeResult, setting HTTP status code 200&#xD;
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[2]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
-      Executed action Vue.Core.Controllers.UsersController.Login (Vue.Core) in 440.28790000000004ms&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.Login (Vue.Core)&#xD;
+      Executed action Vue.Core.Controllers.UsersController.Login (Vue.Core) in 464.65610000000004ms&#xD;
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
       Executed endpoint 'Vue.Core.Controllers.UsersController.Login (Vue.Core)'&#xD;
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
-      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQNQL2J2HJF, SpanId:|1ca64e8e-4eef2703d745279e., TraceId:1ca64e8e-4eef2703d745279e, ParentId:&#xD;
-      Request finished in 875.7221000000001ms 200</StdOut>
+      =&gt; RequestPath:/api/Users/Login/ RequestId:0HLQTR55SNUHS, SpanId:|6b246b4e-46550e74f09b1ebb., TraceId:6b246b4e-46550e74f09b1ebb, ParentId:&#xD;
+      Request finished in 884.464ms 200</StdOut>
       </Output>
     </UnitTestResult>
-    <UnitTestResult executionId="e25252f1-d5a0-40e3-b332-967f93dc1d57" testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" testName="TestGetUsers" computerName="DESKTOP-JQ27UAA" duration="00:00:00.7380460" startTime="2019-10-24T00:23:00.0000000+08:00" endTime="2019-10-24T00:23:01.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e25252f1-d5a0-40e3-b332-967f93dc1d57">
+    <UnitTestResult executionId="e4825f8e-8013-4005-9b74-50051f432fc9" testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" testName="TestGetUsers" computerName="DESKTOP-JQ27UAA" duration="00:00:00.8439520" startTime="2019-10-31T16:06:56.0000000+08:00" endTime="2019-10-31T16:06:57.0000000+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e4825f8e-8013-4005-9b74-50051f432fc9">
       <Output>
         <StdOut>info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
@@ -103,29 +103,29 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]&#xD;
       User profile is available. Using 'C:\Users\dyco\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.&#xD;
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Request starting HTTP/1.1 POST http://localhost/api/Users/GetAll/ application/json; charset=utf-8 &#xD;
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Executing DbCommand [Parameters=[@__path_0='?'], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT a."Id", a."AppsId", a."CreatedAt", a."CreatedBy", a."Gid", a."Hits", a."IsDeleted", a."RoutePath", a."UpdatedAt", a."UpdatedBy"&#xD;
       FROM "AppsApiCollection" AS a&#xD;
       WHERE ((a."RoutePath" = @__path_0) AND ((a."RoutePath" IS NOT NULL) AND (@__path_0 IS NOT NULL))) OR ((a."RoutePath" IS NULL) AND (@__path_0 IS NULL))&#xD;
       LIMIT 1&#xD;
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Failed to determine the https port for redirect.&#xD;
 info: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler[2]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Successfully validated the token.&#xD;
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Entity Framework Core 3.0.0 initialized 'ApplicationDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Vue.Core.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null &#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Executing DbCommand [Parameters=[@__id_0='?' (DbType = Int32), @__path_1='?'], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT EXISTS (&#xD;
           SELECT 1&#xD;
@@ -137,22 +137,22 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
           INNER JOIN "AppsApiCollection" AS a0 ON a."Id" = a0."AppsId"&#xD;
           WHERE ((((((((u."Id" = @__id_0) AND (@__id_0 IS NOT NULL)) AND (((a0."RoutePath" = @__path_1) AND ((a0."RoutePath" IS NOT NULL) AND (@__path_1 IS NOT NULL))) OR ((a0."RoutePath" IS NULL) AND (@__path_1 IS NULL)))) AND (u0."IsDeleted" = FALSE)) AND (r."IsDeleted" = FALSE)) AND (r0."IsDeleted" = FALSE)) AND (a."IsDeleted" = FALSE)) AND (a0."IsDeleted" = FALSE)) AND r0."Read")&#xD;
 info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[1]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Authorization was successful.&#xD;
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Executing endpoint 'Vue.Core.Controllers.UsersController.GetAll (Vue.Core)'&#xD;
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
       Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(Vue.Core.Service.Fitlers.UsersFilter) on controller Vue.Core.Controllers.UsersController (Vue.Core).&#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
       Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT COUNT(*)::INT&#xD;
       FROM "Users" AS u&#xD;
       WHERE NOT (u."IsDeleted")&#xD;
 info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
       Executing DbCommand [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']&#xD;
       SELECT u."Id", u."Comment", u."CreatedAt", u."CreatedBy", u."DateOfBirth", u."Email", u."FirstName", u."Gender", u."Gid", u."IsDeleted", u."LastName", u."LoginName", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."UpdatedBy"&#xD;
       FROM "Users" AS u&#xD;
@@ -160,33 +160,33 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20100]&#xD;
       ORDER BY u."CreatedAt" DESC&#xD;
       LIMIT @__p_1 OFFSET @__p_0&#xD;
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
       Executing ObjectResult, writing value of type '&lt;&gt;f__AnonymousType0`2[[System.Collections.Generic.List`1[[Vue.Core.Model.UsersList, Vue.Core.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.&#xD;
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[2]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
-      Executed action Vue.Core.Controllers.UsersController.GetAll (Vue.Core) in 110.16850000000001ms&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId: =&gt; Vue.Core.Controllers.UsersController.GetAll (Vue.Core)&#xD;
+      Executed action Vue.Core.Controllers.UsersController.GetAll (Vue.Core) in 141.4849ms&#xD;
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
       Executed endpoint 'Vue.Core.Controllers.UsersController.GetAll (Vue.Core)'&#xD;
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]&#xD;
-      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQNQL2J2HJG, SpanId:|1ca64e8f-4eef2703d745279e., TraceId:1ca64e8f-4eef2703d745279e, ParentId:&#xD;
-      Request finished in 663.2847ms 200 application/json; charset=utf-8</StdOut>
+      =&gt; RequestPath:/api/Users/GetAll/ RequestId:0HLQTR55SNUHT, SpanId:|6b246b4f-46550e74f09b1ebb., TraceId:6b246b4f-46550e74f09b1ebb, ParentId:&#xD;
+      Request finished in 757.9870000000001ms 200 application/json; charset=utf-8</StdOut>
       </Output>
     </UnitTestResult>
   </Results>
   <TestDefinitions>
     <UnitTest name="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" storage="c:\users\dyco\desktop\vue-project\vue.core\vue.core.tests\bin\debug\netcoreapp3.0\vue.core.tests.dll" id="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65">
-      <Execution id="0697a07a-572d-4391-8885-a5ba42f9e160" />
+      <Execution id="5db5c2dd-1ff3-40ff-b97e-a2e75f048976" />
       <TestMethod codeBase="C:\Users\dyco\Desktop\Vue-project\Vue.Core\Vue.Core.Tests\bin\Debug\netcoreapp3.0\Vue.Core.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Vue.Core.Tests.AppTest" name="TestLogin(&quot;admin&quot;,&quot;p12345&quot;)" />
     </UnitTest>
     <UnitTest name="TestGetUsers" storage="c:\users\dyco\desktop\vue-project\vue.core\vue.core.tests\bin\debug\netcoreapp3.0\vue.core.tests.dll" id="4c4032a7-9b16-8e59-1ef8-4667d3138285">
-      <Execution id="e25252f1-d5a0-40e3-b332-967f93dc1d57" />
+      <Execution id="e4825f8e-8013-4005-9b74-50051f432fc9" />
       <TestMethod codeBase="C:\Users\dyco\Desktop\Vue-project\Vue.Core\Vue.Core.Tests\bin\Debug\netcoreapp3.0\Vue.Core.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="Vue.Core.Tests.AppTest" name="TestGetUsers" />
     </UnitTest>
   </TestDefinitions>
   <TestEntries>
-    <TestEntry testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" executionId="0697a07a-572d-4391-8885-a5ba42f9e160" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" executionId="e25252f1-d5a0-40e3-b332-967f93dc1d57" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a4215e7-98d8-a9eb-16ee-f9c025cfbd65" executionId="5db5c2dd-1ff3-40ff-b97e-a2e75f048976" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c4032a7-9b16-8e59-1ef8-4667d3138285" executionId="e4825f8e-8013-4005-9b74-50051f432fc9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
   </TestEntries>
   <TestLists>
     <TestList name="不在清單中的結果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />

@@ -34,6 +34,7 @@ namespace Vue.Core
             Host.CreateDefaultBuilder(args).UseNLog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    
                     webBuilder.UseStartup<Startup>();
                 });
     }

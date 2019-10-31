@@ -20,11 +20,11 @@
 5. Facebook 登錄實作
 6. 運作在docker環境(Redis,Postgres,Nginx,Web獨立分開)
 7. 發怖時會自動做測試後發怖至Docker (publish2docker.sh)
+8. 簡易的LineBot 拿取最新消息功能
 
 #### Future
-1. Line Bot 整合應用
-2. K8s
-3. SingleR
+1. K8s
+2. SingleR
 
 # Step By Step to Build
 1. make sure installed below env.

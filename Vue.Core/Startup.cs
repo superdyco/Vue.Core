@@ -140,6 +140,7 @@ namespace Vue.Core
             services.AddScoped<IUsersTokenService, UsersTokenService>();
             services.AddScoped<IRolesService<Roles>, RolesService>();
             services.AddScoped<INewsService<News>, NewsService>();
+            services.AddScoped<ILineService, LineService>();
 
             #region options
 
