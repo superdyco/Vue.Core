@@ -129,6 +129,13 @@ Production [.env.production] file
 Development [.env.development] file
 ```
 
+# publish to GCP
+1. Install GCP CLI (https://cloud.google.com/sdk/docs/)
+2. gcloud auth configure-docker
+3. docker tag zlinebot:production asia.gcr.io/{projectid}/zlinebot:production
+- 連到gcp的postgres table //記得裝psql clinet tool
+- gcloud sql connect [instance name] --user=postgres --quiet
+- //可以用pgadmin連(記得公開public ip 記得填) 
 
 # other issue
 
