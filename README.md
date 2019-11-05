@@ -133,6 +133,8 @@ Development [.env.development] file
 1. Install GCP CLI (https://cloud.google.com/sdk/docs/)
 2. gcloud auth configure-docker
 3. docker tag zlinebot:production asia.gcr.io/{projectid}/zlinebot:production
+4. 將docker register publish to GCE
+5. 建立Cloud Sql For Postgres Sql
 - 連到gcp的postgres table //記得裝psql clinet tool
 - gcloud sql connect [instance name] --user=postgres --quiet
 - //可以用pgadmin連(記得公開public ip 記得填) 
